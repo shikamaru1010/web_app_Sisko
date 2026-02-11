@@ -8,10 +8,10 @@ export const RESTAURANT = {
     en: "Grill Butcher Shop Šiško - Čajetina",
   },
   address: {
-    sr: "Чајетина, Србија",
-    en: "Čajetina, Serbia",
+    sr: "Краља Александра, Чајетина",
+    en: "Kralja Aleksandra, Čajetina",
   },
-  phone: "+381 XX XXX XXXX",
+  phones: ["031 3831068", "064 12 14 024"],
   email: "info@mesara-sisko.rs",
   coordinates: {
     lat: 43.7531,

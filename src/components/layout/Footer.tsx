@@ -31,8 +31,8 @@ export default function Footer() {
             </div>
             <p className="text-sm text-text-light/60 leading-relaxed">
               {isEn
-                ? "The finest grill on Zlatibor. Fresh meat, traditional taste, family atmosphere."
-                : "Најбољи роштиљ на Златибору. Свеже месо, традиционални укус, породична атмосфера."}
+                ? "The finest grill in Čajetina. Fresh meat, traditional taste, family atmosphere."
+                : "Најбољи роштиљ у Чајетини. Свеже месо, традиционални укус, породична атмосфера."}
             </p>
           </div>
 
@@ -85,9 +85,15 @@ export default function Footer() {
                 <MapPin size={16} className="shrink-0 text-accent" />
                 <span>{isEn ? RESTAURANT.address.en : RESTAURANT.address.sr}</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Phone size={16} className="shrink-0 text-accent" />
-                <span>{RESTAURANT.phone}</span>
+              <div className="flex items-start gap-3 text-sm text-text-light/60">
+                <Phone size={16} className="mt-0.5 shrink-0 text-accent" />
+                <div className="flex flex-col gap-1">
+                  {RESTAURANT.phones.map((phone) => (
+                    <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-accent transition-colors">
+                      {phone}
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="flex items-center gap-3 text-sm text-text-light/60">
                 <Mail size={16} className="shrink-0 text-accent" />

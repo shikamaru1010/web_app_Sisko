@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { Flame, Leaf, Award, MapPin, Clock, ArrowRight } from "lucide-react";
 import { menuData } from "@/data/menu";
+import { RESTAURANT } from "@/lib/constants";
 
 const popularItems = ["mesano-sveze", "pljeskavica", "cevapi", "komplet-lepinja"];
 
@@ -119,7 +120,7 @@ export default function HomePage() {
                 key={item.id}
                 className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="relative h-40 overflow-hidden">
+                <div className="relative h-48 sm:h-52 overflow-hidden">
                   {item.image ? (
                     <Image
                       src={item.image}
@@ -173,7 +174,7 @@ export default function HomePage() {
             <div className="flex items-center gap-3">
               <MapPin size={24} className="text-accent" />
               <span className="text-text-muted">
-                {isEn ? "Čajetina, Serbia" : "Чајетина, Србија"}
+                {isEn ? RESTAURANT.address.en : RESTAURANT.address.sr}
               </span>
             </div>
             <div className="flex items-center gap-3">
@@ -183,7 +184,7 @@ export default function HomePage() {
                   {t("workingHours")}
                 </span>
                 <span className="text-sm text-text-muted">
-                  {isEn ? "Mon - Sun: 08:00 - 22:00" : "Пон - Нед: 08:00 - 22:00"}
+                  {isEn ? RESTAURANT.workingHours.en : RESTAURANT.workingHours.sr}
                 </span>
               </div>
             </div>

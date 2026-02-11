@@ -36,9 +36,13 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-text-dark">{t("phone")}</h3>
-                    <a href={`tel:${RESTAURANT.phone}`} className="text-text-muted hover:text-accent transition-colors">
-                      {RESTAURANT.phone}
-                    </a>
+                    <div className="flex flex-col gap-1">
+                      {RESTAURANT.phones.map((phone) => (
+                        <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="text-text-muted hover:text-accent transition-colors">
+                          {phone}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
