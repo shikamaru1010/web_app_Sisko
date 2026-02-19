@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -203,7 +203,7 @@ export default function BuildMealPage() {
                   <RotateCcw size={14} />
                 </button>
                 <Link
-                  href={`/${locale}/korpa`}
+                  href="/korpa"
                   onClick={addAllToCart}
                   className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-accent py-2.5 font-semibold text-white hover:bg-accent-hover"
                 >

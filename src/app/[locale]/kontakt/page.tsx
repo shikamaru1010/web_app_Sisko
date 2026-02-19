@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
 
 export default function ContactPage() {
@@ -10,10 +10,29 @@ export default function ContactPage() {
   const locale = useLocale();
   const isEn = locale === "en";
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(false);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,27 +105,57 @@ export default function ContactPage() {
                   {isEn ? "Message sent!" : "Порука послата!"}
                 </h3>
                 <p className="mt-2 text-text-muted">
-                  {isEn ? "We will get back to you as soon as possible." : "Одговоричемо вам у најкраћем року."}
+                  {isEn ? "We will get back to you as soon as possible." : "Одговорићемо вам у најкраћем року."}
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-6 shadow-sm">
                 <div className="space-y-4">
+                  {error && (
+                    <div className="flex items-center gap-2 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
+                      <AlertCircle size={16} />
+                      {isEn ? "Failed to send message. Please try again." : "Слање поруке није успело. Покушајте поново."}
+                    </div>
+                  )}
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-text-dark">{t("formName")}</label>
-                    <input type="text" required className="w-full rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20" />
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                    />
                   </div>
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-text-dark">{t("formEmail")}</label>
-                    <input type="email" required className="w-full rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20" />
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                    />
                   </div>
                   <div>
                     <label className="mb-1.5 block text-sm font-medium text-text-dark">{t("formMessage")}</label>
-                    <textarea required rows={5} className="w-full resize-none rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20" />
+                    <textarea
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full resize-none rounded-lg border border-wood-light/30 px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                    />
                   </div>
-                  <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98]">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98] disabled:opacity-60"
+                  >
                     <Send size={18} />
-                    {t("formSubmit")}
+                    {loading
+                      ? (isEn ? "Sending..." : "Слање...")
+                      : t("formSubmit")}
                   </button>
                 </div>
               </form>

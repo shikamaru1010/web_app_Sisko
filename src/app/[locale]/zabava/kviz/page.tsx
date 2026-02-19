@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, CheckCircle, XCircle, RotateCcw, Trophy } from "lucide-react";
 import { adultQuizQuestions } from "@/data/quiz-adults";
@@ -73,7 +73,7 @@ export default function QuizPage() {
               {t("tryAgain")}
             </button>
             <Link
-              href={`/${locale}/zabava`}
+              href="/zabava"
               className="flex items-center justify-center gap-2 rounded-full border-2 border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-white"
             >
               <ArrowLeft size={18} />

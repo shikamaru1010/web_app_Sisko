@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import {
@@ -78,7 +78,7 @@ export default function CartPage() {
           </h1>
           <p className="mt-2 text-text-muted">{t("successDesc")}</p>
           <Link
-            href={`/${locale}/meni`}
+            href="/meni"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover"
           >
             <ArrowLeft size={18} />
@@ -99,7 +99,7 @@ export default function CartPage() {
           </h1>
           <p className="mt-2 text-text-muted">{t("emptyDesc")}</p>
           <Link
-            href={`/${locale}/meni`}
+            href="/meni"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover"
           >
             <ArrowLeft size={18} />
@@ -167,20 +167,22 @@ export default function CartPage() {
               {/* Quantity controls */}
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() =>
-                    updateQuantity(item.id, item.quantity - 1, item.size)
-                  }
+                  onClick={() => {
+                    const step = item.quantity % 1 !== 0 || item.quantity <= 1 ? 0.25 : 1;
+                    updateQuantity(item.id, Math.round((item.quantity - step) * 100) / 100, item.size);
+                  }}
                   className="rounded-lg bg-cream-dark p-1.5 text-text-muted hover:bg-wood-light/50"
                 >
                   <Minus size={14} />
                 </button>
-                <span className="w-6 text-center text-sm font-semibold">
-                  {item.quantity}
+                <span className="w-8 text-center text-sm font-semibold">
+                  {item.quantity % 1 !== 0 ? item.quantity.toFixed(2) : item.quantity}
                 </span>
                 <button
-                  onClick={() =>
-                    updateQuantity(item.id, item.quantity + 1, item.size)
-                  }
+                  onClick={() => {
+                    const step = item.quantity % 1 !== 0 ? 0.25 : 1;
+                    updateQuantity(item.id, Math.round((item.quantity + step) * 100) / 100, item.size);
+                  }}
                   className="rounded-lg bg-cream-dark p-1.5 text-text-muted hover:bg-wood-light/50"
                 >
                   <Plus size={14} />

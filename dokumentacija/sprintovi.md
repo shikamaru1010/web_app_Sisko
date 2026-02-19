@@ -45,3 +45,5 @@
 
 5. Promeniti pitanja u kvizovima:
    	- Klijent će specificirati koja pitanja da se zamene (u posebnom txt fajlu)
+
+6. omoguciti narudzbine po delovima kilograma, da ne mora ceo nego moze npr 500gr

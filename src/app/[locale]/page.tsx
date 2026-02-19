@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Flame, Leaf, Award, MapPin, Clock, ArrowRight } from "lucide-react";
 import { menuData } from "@/data/menu";
 import { RESTAURANT } from "@/lib/constants";
@@ -49,14 +49,14 @@ export default function HomePage() {
 
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
-              href={`/${locale}/meni`}
+              href="/meni"
               className="flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-95"
             >
               {t("ctaMenu")}
               <ArrowRight size={18} />
             </Link>
             <Link
-              href={`/${locale}/korpa`}
+              href="/korpa"
               className="flex items-center gap-2 rounded-full border-2 border-text-light/30 px-8 py-3.5 text-base font-semibold text-text-light transition-all hover:border-accent hover:text-accent"
             >
               {t("ctaOrder")}
@@ -154,7 +154,7 @@ export default function HomePage() {
 
           <div className="mt-8 text-center">
             <Link
-              href={`/${locale}/meni`}
+              href="/meni"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary-dark active:scale-95"
             >
               {t("viewFullMenu")}
@@ -191,7 +191,7 @@ export default function HomePage() {
           </div>
           <div className="mt-8">
             <Link
-              href={`/${locale}/lokacija`}
+              href="/lokacija"
               className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
             >
               <MapPin size={18} />

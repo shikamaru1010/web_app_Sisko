@@ -127,12 +127,13 @@ export default function MenuPage() {
                       )}
                       <div className="mt-2 flex flex-wrap gap-1">
                         {combo.items.map((item, idx) => (
-                          <span
+                          <button
                             key={idx}
-                            className="rounded-md bg-cream-dark px-2 py-0.5 text-[10px] font-medium text-text-muted"
+                            onClick={() => scrollToCategory(item.categoryId)}
+                            className="rounded-md bg-cream-dark px-2 py-0.5 text-[10px] font-medium text-text-muted hover:bg-accent/10 hover:text-accent transition-colors cursor-pointer"
                           >
-                            {isEn ? item.labelEn : item.label}
-                          </span>
+                            {isEn ? item.labelEn : item.label} ↓
+                          </button>
                         ))}
                       </div>
                     </div>

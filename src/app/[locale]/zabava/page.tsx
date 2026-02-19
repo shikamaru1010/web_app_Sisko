@@ -1,17 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { Brain, Puzzle, Gamepad2, UtensilsCrossed } from "lucide-react";
 
 export default function FunPage() {
   const t = useTranslations("fun");
-  const locale = useLocale();
 
   const games = [
     {
-      href: `/${locale}/zabava/kviz`,
+      href: "/zabava/kviz" as const,
       icon: <Brain size={36} className="text-accent" />,
       title: t("quiz"),
       desc: t("quizDesc"),
@@ -19,7 +18,7 @@ export default function FunPage() {
       color: "from-accent/10 to-secondary/10",
     },
     {
-      href: `/${locale}/zabava/kviz-deca`,
+      href: "/zabava/kviz-deca" as const,
       icon: <Puzzle size={36} className="text-ember" />,
       title: t("kidsQuiz"),
       desc: t("kidsQuizDesc"),
@@ -27,7 +26,7 @@ export default function FunPage() {
       color: "from-ember/10 to-accent/10",
     },
     {
-      href: `/${locale}/zabava/memory`,
+      href: "/zabava/memory" as const,
       icon: <Gamepad2 size={36} className="text-primary" />,
       title: t("memory"),
       desc: t("memoryDesc"),
@@ -35,7 +34,7 @@ export default function FunPage() {
       color: "from-primary/10 to-wood-light/20",
     },
     {
-      href: `/${locale}/zabava/sastavi-obrok`,
+      href: "/zabava/sastavi-obrok" as const,
       icon: <UtensilsCrossed size={36} className="text-secondary" />,
       title: t("buildMeal"),
       desc: t("buildMealDesc"),

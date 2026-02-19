@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
 
@@ -30,9 +30,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-text-light/60 leading-relaxed">
-              {isEn
-                ? "The finest grill in Čajetina. Fresh meat, traditional taste, family atmosphere."
-                : "Најбољи роштиљ у Чајетини. Свеже месо, традиционални укус, породична атмосфера."}
+              {t("footer.madeWith")}
             </p>
           </div>
 
@@ -43,31 +41,31 @@ export default function Footer() {
             </h4>
             <nav className="flex flex-col gap-2">
               <Link
-                href={`/${locale}/meni`}
+                href="/meni"
                 className="text-sm text-text-light/60 hover:text-accent transition-colors"
               >
                 {t("nav.menu")}
               </Link>
               <Link
-                href={`/${locale}/o-nama`}
+                href="/o-nama"
                 className="text-sm text-text-light/60 hover:text-accent transition-colors"
               >
                 {t("nav.about")}
               </Link>
               <Link
-                href={`/${locale}/galerija`}
+                href="/galerija"
                 className="text-sm text-text-light/60 hover:text-accent transition-colors"
               >
                 {t("nav.gallery")}
               </Link>
               <Link
-                href={`/${locale}/kontakt`}
+                href="/kontakt"
                 className="text-sm text-text-light/60 hover:text-accent transition-colors"
               >
                 {t("nav.contact")}
               </Link>
               <Link
-                href={`/${locale}/zabava`}
+                href="/zabava"
                 className="text-sm text-text-light/60 hover:text-accent transition-colors"
               >
                 {t("nav.fun")}

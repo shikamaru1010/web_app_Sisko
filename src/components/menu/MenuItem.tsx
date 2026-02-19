@@ -13,6 +13,13 @@ type Props = {
   showToppings?: boolean;
 };
 
+const WEIGHT_OPTIONS = [
+  { value: 0.25, label: "250г", labelEn: "250g" },
+  { value: 0.5, label: "500г", labelEn: "500g" },
+  { value: 0.75, label: "750г", labelEn: "750g" },
+  { value: 1, label: "1кг", labelEn: "1kg" },
+];
+
 export default function MenuItem({ item, showToppings = false }: Props) {
   const locale = useLocale();
   const t = useTranslations("menu");
@@ -21,6 +28,9 @@ export default function MenuItem({ item, showToppings = false }: Props) {
   const [selectedOption, setSelectedOption] = useState(0);
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [toppingsOpen, setToppingsOpen] = useState(false);
+  const [selectedWeight, setSelectedWeight] = useState(0.5);
+
+  const isKgItem = item.unit === "кг" || item.unitEn === "kg";
 
   const name = isEn ? item.nameEn : item.name;
   const description = isEn ? item.descriptionEn : item.description;
@@ -49,17 +59,24 @@ export default function MenuItem({ item, showToppings = false }: Props) {
           .join(", ")}`
       : "";
 
-    addItem({
-      id: showToppings && selectedToppings.length > 0
-        ? `${item.id}-${selectedToppings.sort().join("-")}-${selectedOption}`
-        : `${item.id}-${selectedOption}`,
-      name: item.name + toppingsText,
-      nameEn: item.nameEn + toppingsText,
-      price: getPrice(),
-      size: item.options?.[selectedOption]?.size,
-      sizeEn: item.options?.[selectedOption]?.sizeEn,
-      image: item.image,
-    });
+    addItem(
+      {
+        id: showToppings && selectedToppings.length > 0
+          ? `${item.id}-${selectedToppings.sort().join("-")}-${selectedOption}`
+          : `${item.id}-${selectedOption}`,
+        name: item.name + toppingsText,
+        nameEn: item.nameEn + toppingsText,
+        price: getPrice(),
+        size: isKgItem
+          ? `${selectedWeight * 1000}г`
+          : item.options?.[selectedOption]?.size,
+        sizeEn: isKgItem
+          ? `${selectedWeight * 1000}g`
+          : item.options?.[selectedOption]?.sizeEn,
+        image: item.image,
+      },
+      isKgItem ? selectedWeight : 1
+    );
 
     // Reset toppings after adding
     if (showToppings) {
@@ -105,8 +122,8 @@ export default function MenuItem({ item, showToppings = false }: Props) {
 
           <div className="mt-2 flex items-end justify-between gap-2">
             <div className="flex flex-col gap-1">
-              {/* Size options */}
-              {item.options && item.options.length > 1 && (
+              {/* Size options (non-kg items) */}
+              {!isKgItem && item.options && item.options.length > 1 && (
                 <div className="flex gap-1">
                   {item.options.map((opt, idx) => (
                     <button
@@ -124,13 +141,38 @@ export default function MenuItem({ item, showToppings = false }: Props) {
                 </div>
               )}
 
+              {/* Weight selector for kg items */}
+              {isKgItem && (
+                <div className="flex gap-1">
+                  {WEIGHT_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      onClick={() => setSelectedWeight(opt.value)}
+                      className={`rounded-md px-2 py-0.5 text-xs font-medium transition-colors ${
+                        selectedWeight === opt.value
+                          ? "bg-primary text-white"
+                          : "bg-cream-dark text-text-muted hover:bg-wood-light/50"
+                      }`}
+                    >
+                      {isEn ? opt.labelEn : opt.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {/* Price */}
               <span className="text-lg font-bold text-accent">
-                {getPrice().toLocaleString("sr-RS")}
+                {isKgItem
+                  ? Math.round(getPrice() * selectedWeight).toLocaleString("sr-RS")
+                  : getPrice().toLocaleString("sr-RS")}
                 <span className="text-sm font-normal text-text-muted">
                   {" "}
                   {isEn ? "RSD" : "дин"}
-                  {unit && `/${unit}`}
+                  {isKgItem && (
+                    <span className="text-xs">
+                      {" "}({getPrice().toLocaleString("sr-RS")}/{unit})
+                    </span>
+                  )}
                 </span>
               </span>
             </div>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, RotateCcw, Star } from "lucide-react";
 import { kidsQuizQuestions } from "@/data/quiz-kids";
@@ -75,7 +75,7 @@ export default function KidsQuizPage() {
               {t("tryAgain")}
             </button>
             <Link
-              href={`/${locale}/zabava`}
+              href="/zabava"
               className="flex items-center justify-center gap-2 rounded-full border-2 border-primary px-6 py-3 text-lg font-semibold text-primary hover:bg-primary hover:text-white"
             >
               <ArrowLeft size={20} />

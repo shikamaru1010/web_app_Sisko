@@ -2,25 +2,23 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
-import Link from "next/link";
 import { Menu, X, ShoppingCart } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useCartStore } from "@/lib/cart-store";
 
 const navLinks = [
-  { href: "/meni", key: "menu" },
-  { href: "/o-nama", key: "about" },
-  { href: "/galerija", key: "gallery" },
-  { href: "/kontakt", key: "contact" },
-  { href: "/lokacija", key: "location" },
-  { href: "/zabava", key: "fun" },
+  { href: "/meni" as const, key: "menu" },
+  { href: "/o-nama" as const, key: "about" },
+  { href: "/galerija" as const, key: "gallery" },
+  { href: "/kontakt" as const, key: "contact" },
+  { href: "/lokacija" as const, key: "location" },
+  { href: "/zabava" as const, key: "fun" },
 ];
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("nav");
-  const locale = useLocale();
   const totalItems = useCartStore((s) => s.getTotalItems());
 
   return (
@@ -29,7 +27,7 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
-            href={`/${locale}`}
+            href="/"
             className="flex items-center gap-2 text-text-light"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/20 font-[family-name:var(--font-heading)] text-xl font-black text-accent">
@@ -50,7 +48,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.key}
-                href={`/${locale}${link.href}`}
+                href={link.href}
                 className="rounded-lg px-3 py-2 text-sm font-medium text-text-light/80 transition-colors hover:bg-wood-dark/50 hover:text-accent"
               >
                 {t(link.key)}
@@ -64,7 +62,7 @@ export default function Header() {
 
             {/* Cart button */}
             <Link
-              href={`/${locale}/korpa`}
+              href="/korpa"
               className="relative rounded-lg p-2 text-text-light transition-colors hover:bg-wood-dark/50"
             >
               <ShoppingCart size={22} />
@@ -92,7 +90,7 @@ export default function Header() {
         <div className="border-t border-wood-dark/30 bg-charcoal md:hidden">
           <nav className="flex flex-col px-4 py-3">
             <Link
-              href={`/${locale}`}
+              href="/"
               onClick={() => setMobileOpen(false)}
               className="rounded-lg px-4 py-3 text-sm font-medium text-text-light/80 transition-colors hover:bg-wood-dark/50 hover:text-accent"
             >
@@ -101,7 +99,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.key}
-                href={`/${locale}${link.href}`}
+                href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className="rounded-lg px-4 py-3 text-sm font-medium text-text-light/80 transition-colors hover:bg-wood-dark/50 hover:text-accent"
               >

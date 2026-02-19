@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, RotateCcw, Clock, MousePointer } from "lucide-react";
 
@@ -159,7 +159,7 @@ export default function MemoryPage() {
           </div>
           <div className="mt-6 text-center">
             <Link
-              href={`/${locale}/zabava`}
+              href="/zabava"
               className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent"
             >
               <ArrowLeft size={16} />
@@ -215,7 +215,7 @@ export default function MemoryPage() {
   }
 
   // Game board
-  const cols = difficulty === "easy" ? "grid-cols-4" : "grid-cols-4";
+  const cols = difficulty === "easy" ? "grid-cols-4" : difficulty === "medium" ? "grid-cols-4" : "grid-cols-4 sm:grid-cols-5";
 
   return (
     <div className="min-h-screen bg-cream">

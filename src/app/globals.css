@@ -1,25 +1,41 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Brown / Wood palette */
-  --color-primary: #8B4513;
-  --color-primary-light: #A0522D;
-  --color-primary-dark: #6B3410;
-  --color-secondary: #D2691E;
-  --color-accent: #CC3429;
-  --color-accent-hover: #E04A3F;
-  --color-wood-light: #DEB887;
-  --color-wood-medium: #C4A265;
-  --color-wood-dark: #5C3317;
-  --color-cream: #FFF8F0;
-  --color-cream-dark: #F5EBD9;
-  --color-charcoal: #2C1810;
-  --color-charcoal-light: #3D2517;
-  --color-text-dark: #1A0F0A;
-  --color-text-light: #FFF8F0;
-  --color-text-muted: #8B7355;
-  --color-ember: #D4451A;
-  --color-smoke: #4A3728;
+  /* === Palette built from butcher logo #c72a35 === */
+
+  /* Primary — darker shade of logo red (secondary buttons, selected states) */
+  --color-primary: #8a2029;
+  --color-primary-light: #a82833;
+  --color-primary-dark: #6e1921;
+
+  /* Secondary — warm analog shifted toward orange (grill warmth) */
+  --color-secondary: #c75a2a;
+
+  /* Accent — exact logo red (CTAs, badges, key highlights) */
+  --color-accent: #c72a35;
+  --color-accent-hover: #da3d48;
+
+  /* Wood — desaturated reds → warm tans/browns */
+  --color-wood-light: #d9b09a;
+  --color-wood-medium: #bf8c72;
+  --color-wood-dark: #5a2820;
+
+  /* Cream — warm whites with subtle pink warmth from the red */
+  --color-cream: #fdf5f3;
+  --color-cream-dark: #f2e4df;
+
+  /* Charcoal — near-black with red-brown warmth */
+  --color-charcoal: #291418;
+  --color-charcoal-light: #3c2127;
+
+  /* Text — tuned for contrast on both cream and charcoal */
+  --color-text-dark: #1c0d10;
+  --color-text-light: #fdf5f3;
+  --color-text-muted: #8a6860;
+
+  /* Atmosphere — fire & smoke derived from the red */
+  --color-ember: #d1461e;
+  --color-smoke: #4a282d;
 
   /* Font families */
   --font-heading: "Playfair Display", Georgia, serif;

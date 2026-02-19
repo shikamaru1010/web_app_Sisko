@@ -16,7 +16,7 @@ export type CartItem = {
 
 type CartStore = {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, "quantity">) => void;
+  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
   removeItem: (id: string, size?: string) => void;
   updateQuantity: (id: string, quantity: number, size?: string) => void;
   clearCart: () => void;
@@ -31,7 +31,7 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       items: [],
 
-      addItem: (item) => {
+      addItem: (item, quantity = 1) => {
         set((state) => {
           const key = getItemKey(item.id, item.size);
           const existing = state.items.find(
@@ -42,13 +42,13 @@ export const useCartStore = create<CartStore>()(
             return {
               items: state.items.map((i) =>
                 getItemKey(i.id, i.size) === key
-                  ? { ...i, quantity: i.quantity + 1 }
+                  ? { ...i, quantity: Math.round((i.quantity + quantity) * 100) / 100 }
                   : i
               ),
             };
           }
 
-          return { items: [...state.items, { ...item, quantity: 1 }] };
+          return { items: [...state.items, { ...item, quantity }] };
         });
       },
 

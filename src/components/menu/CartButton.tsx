@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/lib/cart-store";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,7 +23,7 @@ export default function CartButton() {
         className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
       >
         <Link
-          href={`/${locale}/korpa`}
+          href="/korpa"
           className="flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-white shadow-xl transition-all hover:bg-accent-hover hover:shadow-2xl active:scale-95"
         >
           <ShoppingCart size={20} />
