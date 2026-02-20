@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { RESTAURANT } from "@/lib/constants";
@@ -16,18 +17,14 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent/20 font-[family-name:var(--font-heading)] text-2xl font-black text-accent">
-                Ш
-              </span>
-              <div>
-                <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-accent">
-                  Месара Шишко
-                </h3>
-                <p className="text-xs tracking-widest text-wood-light uppercase">
-                  Чајетина
-                </p>
-              </div>
+            <div className="mb-4">
+              <Image
+                src="/images/logoMesara.png"
+                alt="Шишко роштиљ-месара"
+                width={160}
+                height={56}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-sm text-text-light/60 leading-relaxed">
               {t("footer.madeWith")}

@@ -58,7 +58,7 @@ export default function KidsQuizPage() {
               <Star
                 key={i}
                 size={28}
-                className={i < score ? "fill-accent text-accent" : "text-gray-300"}
+                className={i < score ? "fill-accent text-accent" : "text-charcoal-light"}
               />
             ))}
           </div>
@@ -121,14 +121,14 @@ export default function KidsQuizPage() {
             <div className="mt-6 grid grid-cols-2 gap-3">
               {(isEn ? q.optionsEn : q.options).map((option, idx) => {
                 let style =
-                  "bg-white border-wood-light/30 hover:border-accent hover:scale-105";
+                  "bg-charcoal-light border-charcoal-light hover:border-accent hover:scale-105";
                 if (selected !== null) {
                   if (idx === q.correct) {
-                    style = "bg-green-100 border-green-400 scale-105";
+                    style = "bg-green-900/30 border-green-400 scale-105";
                   } else if (idx === selected && idx !== q.correct) {
-                    style = "bg-red-100 border-red-400";
+                    style = "bg-red-900/30 border-red-400";
                   } else {
-                    style = "bg-white border-wood-light/30 opacity-40";
+                    style = "bg-charcoal-light border-charcoal-light opacity-40";
                   }
                 }
 

@@ -15,7 +15,27 @@ export type MenuItem = {
   unit?: string;
   unitEn?: string;
   image?: string;
+  composable?: boolean;
 };
+
+export type ComposablePiece = {
+  id: string;
+  name: string;
+  nameEn: string;
+};
+
+export const COMPOSABLE_PIECES: ComposablePiece[] = [
+  { id: "batak", name: "Пилећи батак", nameEn: "Chicken thigh" },
+  { id: "pileci-file", name: "Пилећи филе", nameEn: "Chicken breast" },
+  { id: "svinjski-vrat", name: "Свињски врат", nameEn: "Pork neck" },
+  { id: "svinjski-but", name: "Свињски бут", nameEn: "Pork leg" },
+  { id: "cevapi", name: "Ћевапи", nameEn: "Ćevapi" },
+  { id: "kobasica-sir", name: "Кобасица са сиром", nameEn: "Sausage with cheese" },
+  { id: "rolovani-cevapi", name: "Роловани ћевапи", nameEn: "Rolled ćevapi" },
+  { id: "rolovana-piletina", name: "Ролована пилетина", nameEn: "Rolled chicken" },
+  { id: "bela-vesalica", name: "Бела вешалица", nameEn: "Pork loin" },
+  { id: "hamburska-slanina", name: "Хамбуршка сланина", nameEn: "Hamburg bacon" },
+];
 
 export type MenuCategory = {
   id: string;
@@ -42,6 +62,7 @@ export const menuData: MenuCategory[] = [
         unit: "кг",
         unitEn: "kg",
         image: "/images/punRostilj.jpg",
+        composable: true,
       },
       {
         id: "svinjski-laks",

@@ -45,7 +45,7 @@ export default function AboutPage() {
               i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
             } md:items-center`}
           >
-            <div className="relative h-64 overflow-hidden rounded-2xl shadow-lg md:h-72 md:w-1/2">
+            <div className="relative h-64 overflow-hidden rounded-2xl shadow-lg ring-1 ring-accent/10 md:h-72 md:w-1/2">
               <Image
                 src={section.image}
                 alt={section.title}

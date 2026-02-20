@@ -34,7 +34,7 @@ export default function LocationPage() {
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <div className="rounded-2xl glass-card p-6">
             <div className="mb-3 flex items-center gap-3">
               <Navigation size={24} className="text-accent" />
               <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-text-dark">{t("directions")}</h2>
@@ -46,7 +46,7 @@ export default function LocationPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <div className="rounded-2xl glass-card p-6">
             <div className="mb-3 flex items-center gap-3">
               <Car size={24} className="text-accent" />
               <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-text-dark">{t("parking")}</h2>

@@ -146,7 +146,7 @@ export default function MemoryPage() {
               <button
                 key={diff}
                 onClick={() => startGame(diff)}
-                className="rounded-xl bg-white px-6 py-4 text-center shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                className="rounded-xl glass-card px-6 py-4 text-center transition-all hover:-translate-y-0.5"
               >
                 <span className="text-lg font-semibold text-text-dark">
                   {t(diff)}

@@ -67,7 +67,7 @@ export default function FunPage() {
                 href={game.href}
                 className={`group block rounded-2xl bg-gradient-to-br ${game.color} p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1`}
               >
-                <span className="inline-block rounded-lg bg-white/80 px-2.5 py-1 text-xs font-medium text-text-muted">
+                <span className="inline-block rounded-lg bg-charcoal-light/80 px-2.5 py-1 text-xs font-medium text-text-muted">
                   {game.category}
                 </span>
                 <div className="mt-4 mb-3">{game.icon}</div>

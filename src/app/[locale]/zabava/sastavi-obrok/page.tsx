@@ -100,7 +100,7 @@ export default function BuildMealPage() {
               className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                 activeCategory === cat.id
                   ? "bg-accent text-white shadow-md"
-                  : "bg-white text-text-dark hover:bg-cream-dark"
+                  : "bg-charcoal-light text-text-dark hover:bg-charcoal"
               }`}
             >
               <span>{cat.emoji}</span>
@@ -123,7 +123,7 @@ export default function BuildMealPage() {
                 className={`flex items-center justify-between rounded-xl p-3 transition-all ${
                   isSelected
                     ? "bg-accent/10 border-2 border-accent"
-                    : "bg-white border-2 border-transparent"
+                    : "bg-charcoal-light border-2 border-transparent"
                 }`}
               >
                 <button

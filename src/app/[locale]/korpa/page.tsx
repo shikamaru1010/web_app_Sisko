@@ -37,9 +37,12 @@ export default function CartPage() {
       .map((item) => {
         const name = isEn ? item.nameEn : item.name;
         const size = isEn ? item.sizeEn : item.size;
+        const compText = item.composition && item.composition.length > 0
+          ? `\n  → ${item.composition.map((c) => `${c.name} x${c.quantity}`).join(", ")}`
+          : "";
         return `${name}${size ? ` (${size})` : ""} x${item.quantity} — ${(
           item.price * item.quantity
-        ).toLocaleString("sr-RS")} ${isEn ? "RSD" : "дин"}`;
+        ).toLocaleString("sr-RS")} ${isEn ? "RSD" : "дин"}${compText}`;
       })
       .join("\n");
 
@@ -129,7 +132,7 @@ export default function CartPage() {
             <motion.div
               key={`${item.id}-${item.size}`}
               layout
-              className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm sm:gap-4 sm:p-4"
+              className="flex items-center gap-3 rounded-xl glass-card p-3 sm:gap-4 sm:p-4"
             >
               {/* Image */}
               {item.image ? (
@@ -158,6 +161,13 @@ export default function CartPage() {
                     </span>
                   )}
                 </h3>
+                {item.composition && item.composition.length > 0 && (
+                  <p className="mt-0.5 text-[11px] text-text-muted leading-snug">
+                    {item.composition
+                      .map((c) => `${isEn ? c.nameEn : c.name} x${c.quantity}`)
+                      .join(", ")}
+                  </p>
+                )}
                 <p className="text-sm font-bold text-accent">
                   {(item.price * item.quantity).toLocaleString("sr-RS")}{" "}
                   {isEn ? "RSD" : "дин"}
@@ -189,7 +199,7 @@ export default function CartPage() {
                 </button>
                 <button
                   onClick={() => removeItem(item.id, item.size)}
-                  className="ml-1 rounded-lg p-1.5 text-red-400 hover:bg-red-50"
+                  className="ml-1 rounded-lg p-1.5 text-red-400 hover:bg-red-900/20"
                 >
                   <Trash2 size={14} />
                 </button>
@@ -219,7 +229,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="w-full rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             />
           </div>
           <div>
@@ -233,7 +243,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
-              className="w-full rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             />
           </div>
           <div>
@@ -247,7 +257,7 @@ export default function CartPage() {
                 setFormData({ ...formData, note: e.target.value })
               }
               placeholder={t("notePlaceholder")}
-              className="w-full resize-none rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full resize-none rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
             />
           </div>
 

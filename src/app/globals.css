@@ -2,8 +2,9 @@
 
 @theme inline {
   /* === Palette built from butcher logo #c72a35 === */
+  /* === Dark mode: rich, warm, fire-kissed atmosphere === */
 
-  /* Primary — darker shade of logo red (secondary buttons, selected states) */
+  /* Primary — darker shade of logo red */
   --color-primary: #8a2029;
   --color-primary-light: #a82833;
   --color-primary-dark: #6e1921;
@@ -11,29 +12,29 @@
   /* Secondary — warm analog shifted toward orange (grill warmth) */
   --color-secondary: #c75a2a;
 
-  /* Accent — exact logo red (CTAs, badges, key highlights) */
-  --color-accent: #c72a35;
-  --color-accent-hover: #da3d48;
+  /* Accent — brand red (CTAs, badges, key highlights) */
+  --color-accent: #A61C1C;
+  --color-accent-hover: #C42222;
 
   /* Wood — desaturated reds → warm tans/browns */
   --color-wood-light: #d9b09a;
   --color-wood-medium: #bf8c72;
   --color-wood-dark: #5a2820;
 
-  /* Cream — warm whites with subtle pink warmth from the red */
-  --color-cream: #fdf5f3;
-  --color-cream-dark: #f2e4df;
+  /* Dark base backgrounds */
+  --color-cream: #0e0a0b;
+  --color-cream-dark: #1a1315;
 
-  /* Charcoal — near-black with red-brown warmth */
-  --color-charcoal: #291418;
-  --color-charcoal-light: #3c2127;
+  /* Elevated dark surfaces */
+  --color-charcoal: #221720;
+  --color-charcoal-light: #2e2128;
 
-  /* Text — tuned for contrast on both cream and charcoal */
-  --color-text-dark: #1c0d10;
+  /* Text — light for dark backgrounds */
+  --color-text-dark: #f0e6e4;
   --color-text-light: #fdf5f3;
-  --color-text-muted: #8a6860;
+  --color-text-muted: #b09890;
 
-  /* Atmosphere — fire & smoke derived from the red */
+  /* Atmosphere — fire & smoke */
   --color-ember: #d1461e;
   --color-smoke: #4a282d;
 
@@ -58,22 +59,22 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — dark themed */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-cream-dark);
+  background: var(--color-cream);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-wood-medium);
+  background: var(--color-charcoal-light);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--color-accent);
 }
 
 /* Selection color */
@@ -82,7 +83,61 @@ html {
   color: white;
 }
 
-/* Animations */
+/* ========= GLASSMORPHISM CARD ========= */
+.glass-card {
+  background: rgba(42, 30, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(166, 28, 28, 0.1);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.glass-card:hover {
+  border-color: rgba(166, 28, 28, 0.22);
+  box-shadow:
+    0 8px 32px rgba(166, 28, 28, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ========= HERO ANIMATIONS ========= */
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+@keyframes emberPulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes fireGlow {
+  0% { box-shadow: 0 0 20px rgba(166,28,28,0.15), 0 0 60px rgba(166,28,28,0.05); }
+  100% { box-shadow: 0 0 30px rgba(166,28,28,0.3), 0 0 80px rgba(166,28,28,0.1); }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+.smoke-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(166,28,28,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(209,70,30,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(166,28,28,0.15) 0%, transparent 40%);
+  animation: emberPulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.fire-glow {
+  animation: fireGlow 2s ease-in-out infinite alternate;
+}
+
+/* ========= EXISTING ========= */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

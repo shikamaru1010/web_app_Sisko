@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Flame, Leaf, Award, MapPin, Clock, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { menuData } from "@/data/menu";
 import { RESTAURANT } from "@/lib/constants";
+import EmberParticles from "@/components/effects/EmberParticles";
 
 const popularItems = ["mesano-sveze", "pljeskavica", "cevapi", "komplet-lepinja"];
 
@@ -20,37 +22,74 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      {/* ===== CINEMATIC HERO ===== */}
       <section className="relative overflow-hidden bg-charcoal">
+        {/* Layer 1: Background image with Ken Burns */}
         <div className="absolute inset-0">
           <Image
             src="/images/punRostilj.jpg"
             alt="Roštilj"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-40 animate-ken-burns"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-cream via-charcoal/70 to-charcoal/40" />
         </div>
 
-        <div className="relative mx-auto max-w-5xl px-4 pb-16 pt-20 text-center sm:pb-24 sm:pt-28 animate-[fadeIn_0.6s_ease-out]">
-          <div className="flex justify-center">
-            <span className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-accent/20 font-[family-name:var(--font-heading)] text-5xl font-black text-accent sm:h-24 sm:w-24 sm:text-6xl">
-              Ш
-            </span>
-          </div>
-          <h1 className="mt-4 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-text-light sm:text-5xl lg:text-6xl">
-            {t("heroTitle")}
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-text-light/70 sm:text-lg">
-            {t("heroSubtitle")}
-          </p>
+        {/* Layer 2: Smoke/ember overlay */}
+        <div className="smoke-overlay" />
 
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        {/* Layer 3: Ember particles */}
+        <EmberParticles />
+
+        {/* Layer 4: Content with staggered entrance */}
+        <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-24 text-center sm:pb-28 sm:pt-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
+            <div className="fire-glow rounded-2xl">
+              <Image
+                src="/images/logoMesara.png"
+                alt="Шишко роштиљ-месара"
+                width={400}
+                height={140}
+                className="h-32 w-auto sm:h-44 brightness-110"
+                priority
+              />
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-text-light sm:text-5xl lg:text-6xl"
+          >
+            {t("heroTitle")}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mx-auto mt-4 max-w-2xl text-base text-text-light/70 sm:text-lg"
+          >
+            {t("heroSubtitle")}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          >
             <Link
               href="/meni"
-              className="flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-95"
+              className="flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-95 fire-glow"
             >
               {t("ctaMenu")}
               <ArrowRight size={18} />
@@ -61,11 +100,14 @@ export default function HomePage() {
             >
               {t("ctaOrder")}
             </Link>
-          </div>
+          </motion.div>
         </div>
+
+        {/* Layer 5: Bottom fade into content */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
       </section>
 
-      {/* Why Us */}
+      {/* ===== WHY US ===== */}
       <section className="bg-cream py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
@@ -80,21 +122,25 @@ export default function HomePage() {
                 desc: t("freshMeatDesc"),
               },
               {
-                icon: <Award className="text-secondary" size={32} />,
+                icon: <Award className="text-wood-light" size={32} />,
                 title: t("tradition"),
                 desc: t("traditionDesc"),
               },
               {
-                icon: <Leaf className="text-primary" size={32} />,
+                icon: <Leaf className="text-secondary" size={32} />,
                 title: t("quality"),
                 desc: t("qualityDesc"),
               },
             ].map((card, i) => (
               <div
                 key={i}
-                className="rounded-2xl bg-white p-6 text-center shadow-sm transition-shadow hover:shadow-md"
+                className="glass-card rounded-2xl p-6 text-center"
               >
-                <div className="mb-4 flex justify-center">{card.icon}</div>
+                <div className="mb-4 flex justify-center">
+                  <div className="rounded-xl bg-accent/10 p-3">
+                    {card.icon}
+                  </div>
+                </div>
                 <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-text-dark">
                   {card.title}
                 </h3>
@@ -107,7 +153,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Popular items */}
+      {/* ===== POPULAR ITEMS ===== */}
       <section className="bg-cream-dark py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="text-center font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
@@ -118,7 +164,7 @@ export default function HomePage() {
             {popular.map((item) => (
               <div
                 key={item.id}
-                className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md"
+                className="group overflow-hidden rounded-2xl glass-card"
               >
                 <div className="relative h-48 sm:h-52 overflow-hidden">
                   {item.image ? (
@@ -155,7 +201,7 @@ export default function HomePage() {
           <div className="mt-8 text-center">
             <Link
               href="/meni"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-white transition-all hover:bg-primary-dark active:scale-95"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover active:scale-95"
             >
               {t("viewFullMenu")}
               <ArrowRight size={18} />
@@ -164,7 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Find us */}
+      {/* ===== FIND US ===== */}
       <section className="bg-cream py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 text-center">
           <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
@@ -192,7 +238,7 @@ export default function HomePage() {
           <div className="mt-8">
             <Link
               href="/lokacija"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-primary px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-6 py-3 font-semibold text-accent transition-all hover:bg-accent hover:text-white"
             >
               <MapPin size={18} />
               {isEn ? "View on map" : "Погледај на мапи"}

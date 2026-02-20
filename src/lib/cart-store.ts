@@ -3,6 +3,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+export type CompositionEntry = {
+  name: string;
+  nameEn: string;
+  quantity: number;
+};
+
 export type CartItem = {
   id: string;
   name: string;
@@ -12,6 +18,7 @@ export type CartItem = {
   size?: string;
   sizeEn?: string;
   image?: string;
+  composition?: CompositionEntry[];
 };
 
 type CartStore = {

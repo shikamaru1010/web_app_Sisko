@@ -44,7 +44,10 @@
     },
     "items": "items",
     "noResults": "No results found",
-    "portion": "Portion"
+    "portion": "Portion",
+    "composeMix": "Compose mix",
+    "choosePieces": "Choose meat pieces:",
+    "pcs": "pcs"
   },
   "cart": {
     "title": "Your Cart",
@@ -134,7 +137,7 @@
   },
   "footer": {
     "rights": "All rights reserved",
-    "madeWith": "Made with ❤️ for Butcher Shop Šiško"
+    "madeWith": "Company founded in 2007 with a clear goal and determination."
   },
   "common": {
     "loading": "Loading...",

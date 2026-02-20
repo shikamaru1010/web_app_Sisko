@@ -74,7 +74,7 @@ export default function GalleryPage() {
               className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
                 filter === cat
                   ? "bg-accent text-white shadow-md"
-                  : "bg-white text-text-dark hover:bg-cream-dark"
+                  : "bg-charcoal-light text-text-dark hover:bg-charcoal"
               }`}
             >
               {t(cat)}
@@ -87,7 +87,7 @@ export default function GalleryPage() {
           {filtered.map((img, i) => (
             <div
               key={img.src}
-              className="group relative cursor-pointer overflow-hidden rounded-xl shadow-sm"
+              className="group relative cursor-pointer overflow-hidden rounded-xl ring-1 ring-accent/10 shadow-sm"
               onClick={() => setLightbox(i)}
             >
               <div className="relative aspect-square">

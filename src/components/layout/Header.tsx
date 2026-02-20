@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -18,8 +19,13 @@ const navLinks = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const t = useTranslations("nav");
   const totalItems = useCartStore((s) => s.getTotalItems());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-sm shadow-lg">
@@ -28,19 +34,16 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-text-light"
+            className="flex items-center"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/20 font-[family-name:var(--font-heading)] text-xl font-black text-accent">
-              Ш
-            </span>
-            <div className="flex flex-col">
-              <span className="font-[family-name:var(--font-heading)] text-lg font-bold leading-tight text-accent">
-                Месара Шишко
-              </span>
-              <span className="text-[10px] tracking-widest text-wood-light uppercase">
-                Чајетина
-              </span>
-            </div>
+            <Image
+              src="/images/logoMesara.png"
+              alt="Шишко роштиљ-месара"
+              width={140}
+              height={48}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -66,7 +69,7 @@ export default function Header() {
               className="relative rounded-lg p-2 text-text-light transition-colors hover:bg-wood-dark/50"
             >
               <ShoppingCart size={22} />
-              {totalItems > 0 && (
+              {mounted && totalItems > 0 && (
                 <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white">
                   {totalItems}
                 </span>

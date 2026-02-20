@@ -66,7 +66,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 onClick={() => scrollToCategory(cat.id)}
-                className="flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
+                className="flex shrink-0 items-center gap-1.5 rounded-full bg-cream-dark px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
               >
                 <span>{cat.icon}</span>
                 <span>{isEn ? cat.nameEn : cat.name}</span>
@@ -111,7 +111,7 @@ export default function MenuPage() {
                   {combos.map((combo) => (
                     <div
                       key={combo.id}
-                      className="rounded-xl bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                      className="rounded-xl glass-card p-4"
                     >
                       <div className="text-2xl mb-2">{combo.emoji}</div>
                       <h3 className="font-[family-name:var(--font-heading)] text-sm font-bold text-text-dark">

@@ -122,14 +122,14 @@ export default function QuizPage() {
 
             <div className="mt-6 flex flex-col gap-3">
               {(isEn ? q.optionsEn : q.options).map((option, idx) => {
-                let style = "bg-white border-wood-light/30 hover:border-accent";
+                let style = "bg-charcoal-light border-charcoal-light hover:border-accent";
                 if (selected !== null) {
                   if (idx === q.correct) {
-                    style = "bg-green-50 border-green-400";
+                    style = "bg-green-900/30 border-green-400";
                   } else if (idx === selected && idx !== q.correct) {
-                    style = "bg-red-50 border-red-400";
+                    style = "bg-red-900/30 border-red-400";
                   } else {
-                    style = "bg-white border-wood-light/30 opacity-50";
+                    style = "bg-charcoal-light border-charcoal-light opacity-50";
                   }
                 }
 
