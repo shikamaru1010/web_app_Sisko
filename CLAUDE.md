@@ -1,5 +1,53 @@
+# Mesara Sisko - QR Menu Web App
 
+## Technical Reference for Claude Code
 
+### Tech Stack
+- **Framework**: Next.js 16 (App Router) + React 19 + TypeScript 5.9
+- **Styling**: Tailwind CSS v4 (via @tailwindcss/postcss)
+- **State**: Zustand 5 (`src/lib/cart-store.ts`)
+- **i18n**: next-intl 4.8 — Serbian (Cyrillic) + English
+- **Animations**: Framer Motion 12 | **Icons**: Lucide React
+- **Container**: Docker (Node 22 Alpine, port 4200)
+
+### Project Structure
+```
+src/
+  app/[locale]/          # Pages: home, meni, o-nama, galerija, kontakt, lokacija, zabava, korpa
+  app/api/               # API routes: order, contact (email integration TODO)
+  components/layout/     # Header, Footer, LanguageSwitcher
+  components/menu/       # MenuItem, MenuCategory, MenuSearch, CartButton
+  components/effects/    # EmberParticles
+  data/                  # menu.ts, combos.ts, toppings.ts, quiz-adults.ts, quiz-kids.ts
+  lib/                   # utils.ts, constants.ts, cart-store.ts
+  messages/              # sr.json, en.json
+  i18n/                  # routing.ts, request.ts, navigation.ts
+```
+
+### Coding Conventions
+- **Path alias**: `@/` maps to `./src/`
+- **Serbian text**: Always Cyrillic script in data files and translations
+- **Bilingual**: Every user-facing string must exist in both `sr.json` and `en.json`
+- **Menu data**: Items have `name` (Cyrillic) + `nameEn` (English) fields
+- **Pricing**: Serbian Dinars (RSD/din), `sr-RS` locale formatting
+- **Colors**: Primary accent red `#A61C1C`, charcoal/cream/wood palette
+- **Mobile-first**: Primary use is QR scan on phones
+- **No overengineering**: Small restaurant app, keep it simple
+- **Protected files**: Do not modify `.env*`, `package-lock.json`, or `docker-compose.yml` without asking
+
+### Commands
+```bash
+npm run dev      # Dev server on port 4200
+npm run build    # Production build
+npm run lint     # ESLint check
+```
+
+### Sprint Tracking
+All sprint plans in `dokumentacija/sprintovi.md`
+
+---
+
+## Specifikacije Aplikacije
 
 Uvod u specifikacije aplikacije
 Naziv aplikacije: Web aplikacija za „Роштиљ месара Шишко - Чајетина “ – digitalni QR meni sa interaktivnim elementima i online naručivanjem.
@@ -32,7 +80,6 @@ Online naručivanje:
 Korpa sa stavkama iz menija, forma (ime, telefon, napomena).
 Slanje porudžbine: Email vlasniku + realtime prikaz u Supabase dashboard-u (opciono iskačući prozor na računaru u restoranu).
 Plaćanje: Samo u objektu (gotovina/kartica), legalno za pickup u Srbiji.
-
 
 Podaci koje treba uključiti pri izradi
 Meni podaci: Kompletan spisak stavki sa cenama ( podaci se nalaze u fajlu meniPodaci.txt ), kategorije, opisi (dodati kratke za svako jelo za SEO).

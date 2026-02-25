@@ -44,10 +44,7 @@
     },
     "items": "items",
     "noResults": "No results found",
-    "portion": "Portion",
-    "composeMix": "Compose mix",
-    "choosePieces": "Choose meat pieces:",
-    "pcs": "pcs"
+    "portion": "Portion"
   },
   "cart": {
     "title": "Your Cart",

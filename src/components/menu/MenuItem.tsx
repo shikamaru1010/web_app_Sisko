@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { Plus, Minus, ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, ChevronDown, ChevronUp } from "lucide-react";
 import { useCartStore } from "@/lib/cart-store";
 import { getAvailableToppings } from "@/data/toppings";
-import { COMPOSABLE_PIECES } from "@/data/menu";
 import type { MenuItem as MenuItemType } from "@/data/menu";
 
 type Props = {
@@ -15,9 +14,7 @@ type Props = {
 };
 
 const WEIGHT_OPTIONS = [
-  { value: 0.25, label: "250г", labelEn: "250g" },
-  { value: 0.5, label: "500г", labelEn: "500g" },
-  { value: 0.75, label: "750г", labelEn: "750g" },
+  { value: 0.5, label: "0.5кг", labelEn: "0.5kg" },
   { value: 1, label: "1кг", labelEn: "1kg" },
 ];
 
@@ -30,8 +27,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [toppingsOpen, setToppingsOpen] = useState(false);
   const [selectedWeight, setSelectedWeight] = useState(0.5);
-  const [compositionOpen, setCompositionOpen] = useState(false);
-  const [composition, setComposition] = useState<Record<string, number>>({});
 
   const isKgItem = item.unit === "кг" || item.unitEn === "kg";
 
@@ -52,21 +47,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
     );
   };
 
-  const updatePieceQty = (pieceId: string, delta: number) => {
-    setComposition((prev) => {
-      const current = prev[pieceId] || 0;
-      const next = Math.max(0, current + delta);
-      if (next === 0) {
-        const { [pieceId]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [pieceId]: next };
-    });
-  };
-
-  const compositionEntries = Object.entries(composition).filter(([, qty]) => qty > 0);
-  const hasComposition = compositionEntries.length > 0;
-
   const handleAdd = () => {
     const toppingsText = showToppings && selectedToppings.length > 0
       ? ` + ${selectedToppings
@@ -77,27 +57,11 @@ export default function MenuItem({ item, showToppings = false }: Props) {
           .join(", ")}`
       : "";
 
-    // Build composition data for composable items
-    const compositionData = item.composable && hasComposition
-      ? compositionEntries.map(([pieceId, qty]) => {
-          const piece = COMPOSABLE_PIECES.find((p) => p.id === pieceId);
-          return {
-            name: piece?.name || pieceId,
-            nameEn: piece?.nameEn || pieceId,
-            quantity: qty,
-          };
-        })
-      : undefined;
-
-    const compositionIdSuffix = item.composable && hasComposition
-      ? `-comp-${compositionEntries.map(([id, qty]) => `${id}${qty}`).sort().join("-")}`
-      : "";
-
     addItem(
       {
         id: showToppings && selectedToppings.length > 0
           ? `${item.id}-${selectedToppings.sort().join("-")}-${selectedOption}`
-          : `${item.id}-${selectedOption}${compositionIdSuffix}`,
+          : `${item.id}-${selectedOption}`,
         name: item.name + toppingsText,
         nameEn: item.nameEn + toppingsText,
         price: getPrice(),
@@ -108,7 +72,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
           ? `${selectedWeight * 1000}g`
           : item.options?.[selectedOption]?.sizeEn,
         image: item.image,
-        composition: compositionData,
       },
       isKgItem ? selectedWeight : 1
     );
@@ -117,12 +80,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
     if (showToppings) {
       setSelectedToppings([]);
       setToppingsOpen(false);
-    }
-
-    // Reset composition after adding
-    if (item.composable) {
-      setComposition({});
-      setCompositionOpen(false);
     }
   };
 
@@ -239,26 +196,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
                 </button>
               )}
 
-              {/* Composition toggle for composable items */}
-              {item.composable && (
-                <button
-                  onClick={() => setCompositionOpen(!compositionOpen)}
-                  className={`flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium transition-colors ${
-                    compositionOpen || hasComposition
-                      ? "bg-primary/10 text-primary"
-                      : "bg-cream-dark text-text-muted hover:bg-wood-light/50"
-                  }`}
-                >
-                  {t("composeMix")}
-                  {hasComposition && (
-                    <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[9px] text-white">
-                      {compositionEntries.length}
-                    </span>
-                  )}
-                  {compositionOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-                </button>
-              )}
-
               {/* Add to cart */}
               <button
                 onClick={handleAdd}
@@ -293,51 +230,6 @@ export default function MenuItem({ item, showToppings = false }: Props) {
                 >
                   {isEn ? topping.nameEn : topping.name}
                 </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Composition builder for mixed meat */}
-      {item.composable && compositionOpen && (
-        <div className="border-t border-charcoal-light px-3 pb-3 pt-2 sm:px-4">
-          <p className="mb-2 text-xs font-medium text-text-muted">
-            {t("choosePieces")}
-          </p>
-          <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-            {COMPOSABLE_PIECES.map((piece) => {
-              const qty = composition[piece.id] || 0;
-              return (
-                <div
-                  key={piece.id}
-                  className={`flex items-center justify-between rounded-lg px-3 py-1.5 text-xs transition-colors ${
-                    qty > 0
-                      ? "bg-accent/10 text-text-dark"
-                      : "bg-cream-dark text-text-muted"
-                  }`}
-                >
-                  <span className="font-medium truncate mr-2">
-                    {isEn ? piece.nameEn : piece.name}
-                  </span>
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <button
-                      onClick={() => updatePieceQty(piece.id, -1)}
-                      className="rounded bg-charcoal-light p-0.5 text-text-muted hover:bg-wood-light/50 disabled:opacity-30"
-                      disabled={qty === 0}
-                    >
-                      <Minus size={12} />
-                    </button>
-                    <span className="w-5 text-center font-semibold">{qty}</span>
-                    <button
-                      onClick={() => updatePieceQty(piece.id, 1)}
-                      className="rounded bg-charcoal-light p-0.5 text-text-muted hover:bg-wood-light/50"
-                    >
-                      <Plus size={12} />
-                    </button>
-                    <span className="text-text-muted w-6">{t("pcs")}</span>
-                  </div>
-                </div>
               );
             })}
           </div>

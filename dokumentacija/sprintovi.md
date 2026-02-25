@@ -52,3 +52,67 @@
 2. u footeru da ne pise onaj tekst "Направљено са ... za Mesaru", nego "Предузеће основано 2007. године са јасним циљем и одлучношћу."
 3. Takodje sem opcije da bira tacno kolicinski on moze da izabere bukvalno koliko ce komada cega u mesano sveze meso, na primer korisnik sajta hoce 2kg mesanog mesa ali hoce u to da idu ( 3 bataka, 2 pileca filea, 2 vrata, cevapa 5 i vrat)
 4. Imas u folderu images sliku logoMesara.png koja predstavlja Logo preduzeca koji cemo zameniti sa trenutnim kao glavni logo preduzeca koji treba da se istakne i pokaze dugorocna istorija preduzeca
+
+**SPRINT 4**
+
+&nbsp; datum: 21.02.2026;
+
+1. Rostilj na kilo - opcije tezine:
+   - Smanjeno sa 4 opcije (250g, 500g, 750g, 1kg) na samo 2: 0.5kg i 1kg
+   - Izmenjeno u: `src/components/menu/MenuItem.tsx` (WEIGHT_OPTIONS)
+   - STATUS: ZAVRSENO
+
+2. Hero Landing pozadinska slika:
+   - Zamenjena `punRostilj.jpg` sa `ovalPomfLuk.jpg` (oval sa rostiljom)
+   - Dodato `object-center` za centriranje na oval mesa
+   - Izmenjeno u: `src/app/[locale]/page.tsx`
+   - STATUS: ZAVRSENO
+
+3. Pretraga menija - podrska za latinicu:
+   - Dodata `latinToCyrillic()` funkcija za transliteraciju srpske latinice u cirilicu
+   - Podrzani digrafi (lj, nj, dz, dj) i dijakritici (c, c, s, z, dj)
+   - Korisnik moze kucati "cevap" i pronaci cirilicne stavke
+   - Izmenjeno u: `src/app/[locale]/meni/page.tsx`
+   - STATUS: ZAVRSENO
+
+Claude Code automatizacije instalirane:
+
+- CLAUDE.md azuriran sa tehnickim referencama
+- .claude/settings.json kreiran (auto-lint hook, zastita osetljivih fajlova)
+- context7 MCP server instaliran (dokumentacija uzivo za Next.js, Tailwind, itd.)
+- Playwright MCP server instaliran (testiranje u pregledacu)
+- localization-reviewer agent kreiran (provera prevoda sr/en)
+- menu-validator agent kreiran (validacija podataka menija)
+- .env.example kreiran (sablon za environment varijable)
+
+**SPRINT 4**
+
+Sprint 5 - Frontend zadaci za sajt mesare/restorana
+Početna stranica: zameni sliku komplet lepinje sa kompletLepinjaWhiteBackground.jpg
+Meni mesanog svežeg roštilja: ukloni opciju „Sastavi mesano“ (biranje mesa na komad)
+Slike u celom meniju: dodaj profesionalnu sliku za svako jelo bez slike (po nazivu mesa/pice); u sekciji „Roštilj na kilo“ zameni slike za oblikovano juneće meso (ćevapi), rolovane ćevape, rolovanu piletinu i pileći file odgovarajućim slikama ispečenog mesa (sa interneta)
+Pravila za slike:
+• Roštilj na kilo → samo ispečeno meso
+• Roštilj u lepinji → meso u lepinji sa začinima
+• Dodaci i lepinje → zameni sliku lepinje sa kompletLepinjaWhiteBackground.jpg
+Footer: znatno povećaj logo preduzeća
+
+SPRINT 6
+
+Laptop ekran:
+
+FRONTEND:
+
+UI/UX DESIGN review 23.02.2026.
+
+      1.  Meni zameniti lose slike
+      2.  Slika hero landing page ne valja --> uradjeno (25.02)
+      3.  U meniju da se racuna popust na ukupnu cenu pri racunanju ogovarajucih kombo ponuda
+      4.  Zameniti slike koje stoje na z pattern-u na stranici o nama ( sve 3 slike zameniti opcionalno ) --> uradjeno (25.02)
+      5.  Stranica Galerija ( opcije jela i enterijer ) - prerasporediti odredjene slike i dodati neophodne koje imam na viberu -- strukturno dekomponovati stranicu galerija
+      6.  Zabava pitanja ( pozabaviti se koje da stoji koje da se zameni )
+      7.  Azurirati trenutno vreme rada ( mozda za google preduzeca mozda i ovako samo manuelno azuriratii)
+
+Telefon ekran:
+
+      1. Sekcija Pronadjite nas na pocetnoj stranici treba da budu oba tekst i ikonice pored njih u ravni ( isto udaljene od obe ivice a ne kao sto je trenutno ikonica mape i tekst sa njene desne strance vise uvucen.

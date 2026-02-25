@@ -15,27 +15,8 @@ export type MenuItem = {
   unit?: string;
   unitEn?: string;
   image?: string;
-  composable?: boolean;
 };
 
-export type ComposablePiece = {
-  id: string;
-  name: string;
-  nameEn: string;
-};
-
-export const COMPOSABLE_PIECES: ComposablePiece[] = [
-  { id: "batak", name: "Пилећи батак", nameEn: "Chicken thigh" },
-  { id: "pileci-file", name: "Пилећи филе", nameEn: "Chicken breast" },
-  { id: "svinjski-vrat", name: "Свињски врат", nameEn: "Pork neck" },
-  { id: "svinjski-but", name: "Свињски бут", nameEn: "Pork leg" },
-  { id: "cevapi", name: "Ћевапи", nameEn: "Ćevapi" },
-  { id: "kobasica-sir", name: "Кобасица са сиром", nameEn: "Sausage with cheese" },
-  { id: "rolovani-cevapi", name: "Роловани ћевапи", nameEn: "Rolled ćevapi" },
-  { id: "rolovana-piletina", name: "Ролована пилетина", nameEn: "Rolled chicken" },
-  { id: "bela-vesalica", name: "Бела вешалица", nameEn: "Pork loin" },
-  { id: "hamburska-slanina", name: "Хамбуршка сланина", nameEn: "Hamburg bacon" },
-];
 
 export type MenuCategory = {
   id: string;
@@ -62,7 +43,6 @@ export const menuData: MenuCategory[] = [
         unit: "кг",
         unitEn: "kg",
         image: "/images/punRostilj.jpg",
-        composable: true,
       },
       {
         id: "svinjski-laks",
@@ -73,6 +53,7 @@ export const menuData: MenuCategory[] = [
         price: 1550,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/svinjskiLaksRostilj.jpg",
       },
       {
         id: "svinjski-but",
@@ -83,6 +64,7 @@ export const menuData: MenuCategory[] = [
         price: 1450,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/svinjskiButRostilj.jpg",
       },
       {
         id: "svinjski-vrat",
@@ -93,7 +75,7 @@ export const menuData: MenuCategory[] = [
         price: 1550,
         unit: "кг",
         unitEn: "kg",
-        image: "/images/vratLepinja.jpg",
+        image: "/images/svinjskiVratRostilj.jpg",
       },
       {
         id: "dimljeni-vrat",
@@ -104,6 +86,7 @@ export const menuData: MenuCategory[] = [
         price: 1600,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/dimljeniVrat.jpg",
       },
       {
         id: "but-raznjic",
@@ -114,6 +97,7 @@ export const menuData: MenuCategory[] = [
         price: 1550,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/butRaznjic.jpg",
       },
       {
         id: "cevapi-kg",
@@ -124,7 +108,7 @@ export const menuData: MenuCategory[] = [
         price: 1500,
         unit: "кг",
         unitEn: "kg",
-        image: "/images/cevapiULepinji.jpg",
+        image: "/images/cevapiNaRostilju.jpg",
       },
       {
         id: "kobasica-sir-kg",
@@ -135,6 +119,7 @@ export const menuData: MenuCategory[] = [
         price: 1600,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/kobasicaSirRostilj.jpg",
       },
       {
         id: "rolovani-cevapi-kg",
@@ -145,7 +130,7 @@ export const menuData: MenuCategory[] = [
         price: 1550,
         unit: "кг",
         unitEn: "kg",
-        image: "/images/rolovaniCevULepinji.jpg",
+        image: "/images/rolovaniCevapiRostilj.jpg",
       },
       {
         id: "rolovani-pileci-kg",
@@ -156,7 +141,7 @@ export const menuData: MenuCategory[] = [
         price: 1550,
         unit: "кг",
         unitEn: "kg",
-        image: "/images/rolovanoBeloULepinji.jpg",
+        image: "/images/rolovaniPiliciRostilj.jpg",
       },
       {
         id: "pileci-file-kg",
@@ -167,7 +152,7 @@ export const menuData: MenuCategory[] = [
         price: 1350,
         unit: "кг",
         unitEn: "kg",
-        image: "/images/pileceBeloULepinji.jpg",
+        image: "/images/pileciFileRostilj.jpg",
       },
       {
         id: "pileci-batak-kg",
@@ -178,6 +163,7 @@ export const menuData: MenuCategory[] = [
         price: 1350,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/pileciBAtak.jpg",
       },
       {
         id: "hamburska-slanina",
@@ -188,6 +174,7 @@ export const menuData: MenuCategory[] = [
         price: 1500,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/hamburskaSlanina.jpg",
       },
     ],
   },
@@ -204,7 +191,7 @@ export const menuData: MenuCategory[] = [
         description: "Сочна пљескавица од 200г у лепињи са додацима",
         descriptionEn: "Juicy 200g burger patty in bread with toppings",
         options: [{ size: "200г", sizeEn: "200g", price: 420 }],
-        image: "/images/pljekaULepinji.jpg",
+        image: "/images/pljekaULepinjiDrveniStil.png",
       },
       {
         id: "cevapi",
@@ -216,7 +203,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 370 },
           { size: "200г", sizeEn: "200g", price: 420 },
         ],
-        image: "/images/cevapiULepinji.jpg",
+        image: "/images/cevapiULepinjiUradjena.png",
       },
       {
         id: "kobasica",
@@ -228,6 +215,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 420 },
           { size: "200г", sizeEn: "200g", price: 450 },
         ],
+        image: "/images/kobasicaULepinji.jpg",
       },
       {
         id: "svinjski-but-lep",
@@ -239,6 +227,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 370 },
           { size: "200г", sizeEn: "200g", price: 420 },
         ],
+        image: "/images/svinjskiButULepinji.jpg",
       },
       {
         id: "svinjski-vrat-lep",
@@ -274,6 +263,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 370 },
           { size: "200г", sizeEn: "200g", price: 420 },
         ],
+        image: "/images/pileciBAtak.jpg",
       },
       {
         id: "dimljeno-lep",
@@ -285,6 +275,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 420 },
           { size: "200г", sizeEn: "200g", price: 450 },
         ],
+        image: "/images/dimljeniVrat.jpg",
       },
       {
         id: "rolovani-cevapi-lep",
@@ -320,6 +311,7 @@ export const menuData: MenuCategory[] = [
           { size: "150г", sizeEn: "150g", price: 420 },
           { size: "200г", sizeEn: "200g", price: 470 },
         ],
+        image: "/images/belaVesalicaLepinji.jpg",
       },
     ],
   },
@@ -338,6 +330,7 @@ export const menuData: MenuCategory[] = [
         price: 1800,
         unit: "кг",
         unitEn: "kg",
+        image: "/images/pastrmkaRostilj.jpg",
       },
     ],
   },
@@ -354,7 +347,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћа лепиња (200г)",
         descriptionEn: "Homemade flatbread (200g)",
         price: 70,
-        image: "/images/kompletLepinja.jpg",
+        image: "/images/kompletLepinjaWhiteBackground.jpg",
       },
       {
         id: "komplet-lepinja",
@@ -363,7 +356,7 @@ export const menuData: MenuCategory[] = [
         description: "Лепиња са јајима и кајмаком",
         descriptionEn: "Flatbread with eggs and kajmak",
         price: 370,
-        image: "/images/kompletLepinja.jpg",
+        image: "/images/kompletUradjena.png",
       },
       {
         id: "lepinja-pretop",
@@ -372,6 +365,7 @@ export const menuData: MenuCategory[] = [
         description: "Лепиња са домаћим претопом",
         descriptionEn: "Flatbread with homemade pretop (rendered fat)",
         price: 120,
+        image: "/images/lepinjaPretop.jpg",
       },
       {
         id: "lepinja-kajmak",
@@ -380,6 +374,7 @@ export const menuData: MenuCategory[] = [
         description: "Лепиња са 100г домаћег кајмака",
         descriptionEn: "Flatbread with 100g of homemade kajmak",
         price: 300,
+        image: "/images/lepinjaKajmak.jpg",
       },
       {
         id: "pretop",
@@ -388,6 +383,7 @@ export const menuData: MenuCategory[] = [
         description: "Додатна порција претопа (0,05л)",
         descriptionEn: "Extra portion of pretop (0.05l)",
         price: 120,
+        image: "/images/lepinjaPretop.jpg",
       },
       {
         id: "pomfrit-mali",
@@ -405,6 +401,7 @@ export const menuData: MenuCategory[] = [
         description: "Помфрит — породична порција",
         descriptionEn: "French fries — family portion",
         price: 1000,
+        image: "/images/ovalPomfLuk.jpg",
       },
       {
         id: "jogurt-mali",
@@ -413,6 +410,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћи јогурт (0,25л)",
         descriptionEn: "Homemade yogurt (0.25l)",
         price: 60,
+        image: "/images/jogurt.jpg",
       },
       {
         id: "jogurt-veci",
@@ -421,6 +419,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћи јогурт, већа чаша (0,33л)",
         descriptionEn: "Homemade yogurt, large glass (0.33l)",
         price: 80,
+        image: "/images/jogurt.jpg",
       },
     ],
   },
@@ -437,6 +436,7 @@ export const menuData: MenuCategory[] = [
         description: "Свежа парадајз салата (100г)",
         descriptionEn: "Fresh tomato salad (100g)",
         price: 200,
+        image: "/images/paradajzSalata.jpg",
       },
       {
         id: "kupus-salata",
@@ -445,6 +445,7 @@ export const menuData: MenuCategory[] = [
         description: "Свежа салата од купуса (100г)",
         descriptionEn: "Fresh cabbage salad (100g)",
         price: 150,
+        image: "/images/kupusSalata.jpg",
       },
       {
         id: "mesana-salata",
@@ -453,6 +454,7 @@ export const menuData: MenuCategory[] = [
         description: "Мешана салата (100г)",
         descriptionEn: "Mixed salad (100g)",
         price: 250,
+        image: "/images/mesanaSalata.jpg",
       },
       {
         id: "dodaci",
@@ -461,6 +463,7 @@ export const menuData: MenuCategory[] = [
         description: "Разни додаци (100г)",
         descriptionEn: "Various extras (100g)",
         price: 150,
+        image: "/images/dodaci.jpg",
       },
       {
         id: "kajmak",
@@ -469,6 +472,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћи кајмак (100г)",
         descriptionEn: "Homemade kajmak cream cheese (100g)",
         price: 200,
+        image: "/images/kajmak.jpg",
       },
       {
         id: "sir",
@@ -477,6 +481,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћи сир (100г)",
         descriptionEn: "Homemade cheese (100g)",
         price: 250,
+        image: "/images/sir.jpg",
       },
       {
         id: "krastavcici",
@@ -485,6 +490,7 @@ export const menuData: MenuCategory[] = [
         description: "Домаћи кисели краставчићи",
         descriptionEn: "Homemade pickled cucumbers",
         price: 100,
+        image: "/images/krastavcici.jpg",
       },
       {
         id: "ljuta-papricica",
@@ -493,6 +499,7 @@ export const menuData: MenuCategory[] = [
         description: "Љута папричица у уљу (комад)",
         descriptionEn: "Hot pepper in oil (piece)",
         price: 130,
+        image: "/images/ljutaPapricica.jpg",
       },
     ],
   },
@@ -509,6 +516,7 @@ export const menuData: MenuCategory[] = [
         description: "Кока-кола, Фанта, Спрајт...",
         descriptionEn: "Coca-Cola, Fanta, Sprite...",
         price: 150,
+        image: "/images/sokoviGazirani.jpg",
       },
       {
         id: "sok-033",
@@ -517,60 +525,70 @@ export const menuData: MenuCategory[] = [
         description: "Кока-кола, Фанта, Спрајт...",
         descriptionEn: "Coca-Cola, Fanta, Sprite...",
         price: 180,
+        image: "/images/sokoviGazirani.jpg",
       },
       {
         id: "ledeni-caj",
         name: "Ледени чај (0,5л)",
         nameEn: "Iced tea (0.5l)",
         price: 180,
+        image: "/images/ledeniCaj.jpg",
       },
       {
         id: "ultra",
         name: "Ултра (0,25л)",
         nameEn: "Ultra energy drink (0.25l)",
         price: 200,
+        image: "/images/ultraEnergy.jpg",
       },
       {
         id: "pivo-zajecarsko",
         name: "Пиво Зајечарско (0,33л)",
         nameEn: "Zaječarsko beer (0.33l)",
         price: 180,
+        image: "/images/pivo.jpg",
       },
       {
         id: "pivo-niksicko",
         name: "Пиво Никшићко (0,33л)",
         nameEn: "Nikšićko beer (0.33l)",
         price: 200,
+        image: "/images/pivo.jpg",
       },
       {
         id: "vino-belo",
         name: "Вино флашица бело (0,187л)",
         nameEn: "White wine bottle (0.187l)",
         price: 250,
+        image: "/images/vinoBelo.jpg",
       },
       {
         id: "vino-crveno",
         name: "Вино флашица црвено (0,187л)",
         nameEn: "Red wine bottle (0.187l)",
         price: 250,
+        image: "/images/vinoCrveno.jpg",
       },
       {
         id: "nekst-dzoj",
         name: "Некст Џој (0,5л)",
         nameEn: "Next Joy (0.5l)",
         price: 180,
+        image: "/images/nekstDzoj.jpg",
       },
       {
         id: "rosa",
         name: "Роса вода (0,5л)",
         nameEn: "Rosa water (0.5l)",
         price: 90,
+        image: "/images/voda.jpg",
       },
       {
         id: "rosa-gazirana",
         name: "Роса вода газирана (0,5л)",
         nameEn: "Rosa sparkling water (0.5l)",
         price: 100,
+        image: "/images/voda.jpg",
       },
       {
         id: "kafa",
@@ -579,6 +597,7 @@ export const menuData: MenuCategory[] = [
         description: "Традиционална домаћа кафа",
         descriptionEn: "Traditional homemade coffee",
         price: 120,
+        image: "/images/kafa.jpg",
       },
     ],
   },

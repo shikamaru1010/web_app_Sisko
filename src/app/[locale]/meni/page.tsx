@@ -10,6 +10,23 @@ import MenuSearch from "@/components/menu/MenuSearch";
 import CartButton from "@/components/menu/CartButton";
 import MenuItem from "@/components/menu/MenuItem";
 
+function latinToCyrillic(text: string): string {
+  const map: [string, string][] = [
+    ["lj", "љ"], ["nj", "њ"], ["dž", "џ"], ["dj", "ђ"],
+    ["đ", "ђ"], ["č", "ч"], ["ć", "ћ"], ["š", "ш"], ["ž", "ж"],
+    ["a","а"],["b","б"],["c","ц"],["d","д"],["e","е"],
+    ["f","ф"],["g","г"],["h","х"],["i","и"],["j","ј"],
+    ["k","к"],["l","л"],["m","м"],["n","н"],["o","о"],
+    ["p","п"],["r","р"],["s","с"],["t","т"],["u","у"],
+    ["v","в"],["z","з"],
+  ];
+  let result = text.toLowerCase();
+  for (const [lat, cyr] of map) {
+    result = result.replaceAll(lat, cyr);
+  }
+  return result;
+}
+
 export default function MenuPage() {
   const [search, setSearch] = useState("");
   const locale = useLocale();
@@ -20,12 +37,15 @@ export default function MenuPage() {
     if (!search.trim()) return null;
 
     const query = search.toLowerCase();
+    const queryCyr = latinToCyrillic(query);
     const results = menuData.flatMap((cat) =>
       cat.items.filter(
         (item) =>
           item.name.toLowerCase().includes(query) ||
+          item.name.toLowerCase().includes(queryCyr) ||
           item.nameEn.toLowerCase().includes(query) ||
           item.description?.toLowerCase().includes(query) ||
+          item.description?.toLowerCase().includes(queryCyr) ||
           item.descriptionEn?.toLowerCase().includes(query)
       )
     );

@@ -21,9 +21,9 @@ export default function Footer() {
               <Image
                 src="/images/logoMesara.png"
                 alt="Шишко роштиљ-месара"
-                width={160}
-                height={56}
-                className="h-12 w-auto"
+                width={320}
+                height={112}
+                className="h-24 w-auto"
               />
             </div>
             <p className="text-sm text-text-light/60 leading-relaxed">

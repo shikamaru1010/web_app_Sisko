@@ -27,10 +27,10 @@ export default function HomePage() {
         {/* Layer 1: Background image with Ken Burns */}
         <div className="absolute inset-0">
           <Image
-            src="/images/punRostilj.jpg"
+            src="/images/4ovalaDrveniStil.png"
             alt="Roštilj"
             fill
-            className="object-cover opacity-40 animate-ken-burns"
+            className="object-cover object-center opacity-40 animate-ken-burns"
             priority
             sizes="100vw"
           />

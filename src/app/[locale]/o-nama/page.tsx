@@ -12,19 +12,19 @@ export default function AboutPage() {
       icon: <Heart className="text-ember" size={28} />,
       title: t("story"),
       text: t("storyText"),
-      image: "/images/Izlog.jpg",
+      image: "/images/unutra.jpg",
     },
     {
       icon: <Flame className="text-accent" size={28} />,
       title: t("specialties"),
       text: t("specialtiesText"),
-      image: "/images/punRostilj3.jpg",
+      image: "/images/pljekaKackavalj.jpg",
     },
     {
       icon: <TreePine className="text-primary" size={28} />,
       title: t("atmosphere"),
       text: t("atmosphereText"),
-      image: "/images/izlogLevo.jpg",
+      image: "/images/teras.jpg",
     },
   ];
 
