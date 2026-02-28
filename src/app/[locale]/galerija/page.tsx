@@ -5,41 +5,71 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
+type GalleryCategory = "izgledObjekta" | "jelanaKilo" | "jelauLepinji" | "proces" | "specijal";
+
 type GalleryImage = {
   src: string;
   alt: string;
-  category: "food" | "interior";
+  category: GalleryCategory;
 };
 
 const images: GalleryImage[] = [
-  { src: "/images/punRostilj.jpg", alt: "Pun roštilj", category: "food" },
-  { src: "/images/punRostilj3.jpg", alt: "Roštilj", category: "food" },
-  { src: "/images/punRostilj4.jpg", alt: "Roštilj specijaliteti", category: "food" },
-  { src: "/images/punRostiljPticja.jpg", alt: "Roštilj iz ptičje perspektive", category: "food" },
-  { src: "/images/punRostilj2Pticja.jpg", alt: "Pun roštilj odozgo", category: "food" },
-  { src: "/images/pljekaOdKilo.jpg", alt: "Pljeskavica od kilo", category: "food" },
-  { src: "/images/pljekaULepinji.jpg", alt: "Pljeskavica u lepinji", category: "food" },
-  { src: "/images/cevapiULepinji.jpg", alt: "Ćevapi u lepinji", category: "food" },
-  { src: "/images/kompletLepinja.jpg", alt: "Komplet lepinja", category: "food" },
-  { src: "/images/rolovaniCevULepinji.jpg", alt: "Rolovani ćevapi", category: "food" },
-  { src: "/images/rolovanoBeloULepinji.jpg", alt: "Rolovano belo u lepinji", category: "food" },
-  { src: "/images/pileceBeloULepinji.jpg", alt: "Pileće belo u lepinji", category: "food" },
-  { src: "/images/vratLepinja.jpg", alt: "Vrat u lepinji", category: "food" },
-  { src: "/images/rositljLepinja.jpg", alt: "Roštilj lepinja", category: "food" },
-  { src: "/images/velikaPljeka.jpg", alt: "Velika pljeskavica", category: "food" },
-  { src: "/images/4Ovala.jpg", alt: "Četiri ovala", category: "food" },
-  { src: "/images/ovalPomfLuk.jpg", alt: "Oval sa pomfritom i lukom", category: "food" },
-  { src: "/images/ovalSmajli.jpg", alt: "Oval smajli", category: "food" },
-  { src: "/images/pomfOvalLukPticja.jpg", alt: "Pomfrit i oval", category: "food" },
-  { src: "/images/kompletLepinjaWhiteBackground.jpg", alt: "Komplet lepinja", category: "food" },
-  { src: "/images/Izlog.jpg", alt: "Izlog mesare", category: "interior" },
-  { src: "/images/izlogDesno.jpg", alt: "Izlog desno", category: "interior" },
-  { src: "/images/izlogLevo.jpg", alt: "Izlog levo", category: "interior" },
+  // izgledObjekta — 8
+  { src: "/images/izgledObjekta/Izlog.jpg", alt: "Izlog mesare", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/izlogDesno.jpg", alt: "Izlog desno", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/izlogLevo.jpg", alt: "Izlog levo", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/unutra.jpg", alt: "Unutrašnjost", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/astal.jpg", alt: "Astal", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/teras.jpg", alt: "Terasa", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/terasa.jpg", alt: "Terasa spolja", category: "izgledObjekta" },
+  { src: "/images/izgledObjekta/terasa2.jpg", alt: "Terasa pogled", category: "izgledObjekta" },
+  // jelanaKilo — 12
+  { src: "/images/jelanaKilo/belaVesalica.jpg", alt: "Bela vešalica", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/cevapi.jpg", alt: "Ćevapi", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/dimljeniSvinjskiVrat.jpg", alt: "Dimljeni svinjski vrat", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/hamburskaSlanina.jpg", alt: "Hamburška slanina", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/kobasica.jpg", alt: "Kobasica", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/pileciBatak.jpg", alt: "Pileći batak", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/pileciFile.jpg", alt: "Pileći file", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/rolovaniCevapi.jpg", alt: "Rolovani ćevapi", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/rolovanoPileceBelo.jpg", alt: "Rolovano pileće belo", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/svinjskaSnicla.jpg", alt: "Svinjska šnicla", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/svinjskiRaznjic.jpg", alt: "Svinjski ražnjić", category: "jelanaKilo" },
+  { src: "/images/jelanaKilo/svinjskiVrat.jpg", alt: "Svinjski vrat", category: "jelanaKilo" },
+  // jelauLepinji — 10
+  { src: "/images/jelauLepinji/cevapiULepinji.jpg", alt: "Ćevapi u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/cevapiULepinjiUradjena.png", alt: "Ćevapi u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/kompletLepinjaWhiteBackground.jpg", alt: "Komplet lepinja", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/kompletLepinjaWhiteBackgroundEditovana.jpg", alt: "Komplet lepinja", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/kompletUradjena.png", alt: "Komplet lepinja", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/pileceBeloULepinji.jpg", alt: "Pileće belo u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/pljekaULepinji.jpg", alt: "Pljeskavica u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/pljekauLepinjiDrveniStil.png", alt: "Pljeskavica u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/rolovaniCevULepinji.jpg", alt: "Rolovani ćevapi u lepinji", category: "jelauLepinji" },
+  { src: "/images/jelauLepinji/rolovanoBeloULepinji.jpg", alt: "Rolovano belo u lepinji", category: "jelauLepinji" },
+  // proces — 9
+  { src: "/images/proces/punRostilj.jpg", alt: "Pun roštilj", category: "proces" },
+  { src: "/images/proces/punRostilj2Pticja.jpg", alt: "Roštilj odozgo", category: "proces" },
+  { src: "/images/proces/punRostilj3.jpg", alt: "Roštilj", category: "proces" },
+  { src: "/images/proces/punRostilj4.jpg", alt: "Roštilj specijaliteti", category: "proces" },
+  { src: "/images/proces/punRostiljPticja.jpg", alt: "Roštilj iz ptičje perspektive", category: "proces" },
+  { src: "/images/proces/kobajanaRostilju.jpg", alt: "Kobasice na roštilju", category: "proces" },
+  { src: "/images/proces/velikaPljeka.jpg", alt: "Velika pljeskavica", category: "proces" },
+  { src: "/images/proces/vratLepinja.jpg", alt: "Vrat u lepinji", category: "proces" },
+  { src: "/images/kobajePriprema.jpg", alt: "Priprema kobasica", category: "proces" },
+  // specijal — 7
+  { src: "/images/specijal/4Ovala.jpg", alt: "Četiri ovala", category: "specijal" },
+  { src: "/images/specijal/ovalPomfLuk.jpg", alt: "Oval sa pomfritom i lukom", category: "specijal" },
+  { src: "/images/specijal/ovalSmajli.jpg", alt: "Oval smajli", category: "specijal" },
+  { src: "/images/specijal/pljekaKackavalj.jpg", alt: "Pljeskavica sa kačkavaljem", category: "specijal" },
+  { src: "/images/specijal/pljekaOdKilo.jpg", alt: "Pljeskavica od kilo", category: "specijal" },
+  { src: "/images/specijal/pomfOvalLukPticja.jpg", alt: "Pomfrit i oval odozgo", category: "specijal" },
+  { src: "/images/specijal/rositljLepinja.jpg", alt: "Roštilj lepinja", category: "specijal" },
 ];
 
 export default function GalleryPage() {
   const t = useTranslations("gallery");
-  const [filter, setFilter] = useState<"all" | "food" | "interior">("all");
+  const [filter, setFilter] = useState<"all" | GalleryCategory>("all");
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   const filtered =
@@ -66,12 +96,12 @@ export default function GalleryPage() {
 
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
         {/* Filter */}
-        <div className="mb-8 flex justify-center gap-2">
-          {(["all", "food", "interior"] as const).map((cat) => (
+        <div className="mb-8 flex flex-wrap justify-center gap-2">
+          {(["all", "izgledObjekta", "jelanaKilo", "jelauLepinji", "proces", "specijal"] as const).map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+              className={`rounded-full px-4 py-2 text-xs font-medium transition-all sm:px-5 sm:text-sm ${
                 filter === cat
                   ? "bg-accent text-white shadow-md"
                   : "bg-charcoal-light text-text-dark hover:bg-charcoal"

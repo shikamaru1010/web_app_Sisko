@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Minus,
@@ -13,6 +14,7 @@ import {
   CheckCircle,
   ArrowLeft,
   CreditCard,
+  Loader2,
 } from "lucide-react";
 import { useCartStore } from "@/lib/cart-store";
 
@@ -20,9 +22,11 @@ export default function CartPage() {
   const t = useTranslations("cart");
   const locale = useLocale();
   const isEn = locale === "en";
-  const { items, removeItem, updateQuantity, getTotalPrice, clearCart } =
+  const router = useRouter();
+  const { items, removeItem, updateQuantity, getSubtotal, getComboDiscount, getTotalPrice, clearCart } =
     useCartStore();
   const [orderSent, setOrderSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -31,6 +35,7 @@ export default function CartPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
 
     // Build order details for email
     const orderDetails = items
@@ -49,7 +54,7 @@ export default function CartPage() {
     const total = getTotalPrice();
 
     try {
-      await fetch("/api/order", {
+      const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,10 +64,19 @@ export default function CartPage() {
           orderDetails,
         }),
       });
+
+      const data = await res.json();
+
+      if (data.orderId) {
+        clearCart();
+        router.push(`/porudzbina/${data.orderId}`);
+        return;
+      }
     } catch {
-      // Still show success - order details are available in case email fails
+      // Fallback to static success if API fails
     }
 
+    setSubmitting(false);
     setOrderSent(true);
     clearCart();
   };
@@ -209,11 +223,26 @@ export default function CartPage() {
         </div>
 
         {/* Total */}
-        <div className="mt-6 flex items-center justify-between rounded-xl bg-charcoal px-6 py-4 text-text-light">
-          <span className="text-lg font-semibold">{t("total")}</span>
-          <span className="text-2xl font-bold text-accent">
-            {getTotalPrice().toLocaleString("sr-RS")} {isEn ? "RSD" : "дин"}
-          </span>
+        <div className="mt-6 rounded-xl bg-charcoal px-6 py-4 text-text-light">
+          {getComboDiscount() > 0 && (
+            <>
+              <div className="flex items-center justify-between pb-2 text-sm text-text-light/70">
+                <span>{t("subtotal")}</span>
+                <span>{getSubtotal().toLocaleString("sr-RS")} {isEn ? "RSD" : "дин"}</span>
+              </div>
+              <div className="flex items-center justify-between pb-3 text-sm font-medium text-green-400">
+                <span>{t("comboDiscount")} −10%</span>
+                <span>−{getComboDiscount().toLocaleString("sr-RS")} {isEn ? "RSD" : "дин"}</span>
+              </div>
+              <div className="border-t border-white/10 pt-3" />
+            </>
+          )}
+          <div className="flex items-center justify-between">
+            <span className="text-lg font-semibold">{t("total")}</span>
+            <span className="text-2xl font-bold text-accent">
+              {getTotalPrice().toLocaleString("sr-RS")} {isEn ? "RSD" : "дин"}
+            </span>
+          </div>
         </div>
 
         {/* Order form */}
@@ -269,10 +298,20 @@ export default function CartPage() {
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-[0.98]"
+            disabled={submitting}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <ShoppingCart size={20} />
-            {t("submit")}
+            {submitting ? (
+              <>
+                <Loader2 size={20} className="animate-spin" />
+                {isEn ? "Sending..." : "Слање..."}
+              </>
+            ) : (
+              <>
+                <ShoppingCart size={20} />
+                {t("submit")}
+              </>
+            )}
           </button>
         </form>
       </div>

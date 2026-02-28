@@ -77,11 +77,11 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <MapPin size={16} className="shrink-0 text-accent" />
+                <MapPin size={16} className="shrink-0 text-accent" aria-hidden="true" />
                 <span>{isEn ? RESTAURANT.address.en : RESTAURANT.address.sr}</span>
               </div>
               <div className="flex items-start gap-3 text-sm text-text-light/60">
-                <Phone size={16} className="mt-0.5 shrink-0 text-accent" />
+                <Phone size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
                 <div className="flex flex-col gap-1">
                   {RESTAURANT.phones.map((phone) => (
                     <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-accent transition-colors">
@@ -91,11 +91,11 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Mail size={16} className="shrink-0 text-accent" />
+                <Mail size={16} className="shrink-0 text-accent" aria-hidden="true" />
                 <span>{RESTAURANT.email}</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Clock size={16} className="shrink-0 text-accent" />
+                <Clock size={16} className="shrink-0 text-accent" aria-hidden="true" />
                 <span>
                   {isEn
                     ? RESTAURANT.workingHours.en

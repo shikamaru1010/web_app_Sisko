@@ -107,7 +107,7 @@ UI/UX DESIGN review 23.02.2026.
 
       1.  Meni zameniti lose slike
       2.  Slika hero landing page ne valja --> uradjeno (25.02)
-      3.  U meniju da se racuna popust na ukupnu cenu pri racunanju ogovarajucih kombo ponuda
+      3.  U meniju da se racuna popust na ukupnu cenu pri racunanju ogovarajucih kombo ponuda --> uradjeno (26.02)
       4.  Zameniti slike koje stoje na z pattern-u na stranici o nama ( sve 3 slike zameniti opcionalno ) --> uradjeno (25.02)
       5.  Stranica Galerija ( opcije jela i enterijer ) - prerasporediti odredjene slike i dodati neophodne koje imam na viberu -- strukturno dekomponovati stranicu galerija
       6.  Zabava pitanja ( pozabaviti se koje da stoji koje da se zameni )

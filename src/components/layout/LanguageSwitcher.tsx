@@ -21,6 +21,8 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchLocale("sr")}
         disabled={isPending}
+        aria-label="Srpski jezik"
+        aria-current={locale === "sr" ? true : undefined}
         className={`rounded-full px-3 py-1 text-sm font-medium transition-all ${
           locale === "sr"
             ? "bg-primary text-white shadow-sm"
@@ -32,6 +34,8 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchLocale("en")}
         disabled={isPending}
+        aria-label="English language"
+        aria-current={locale === "en" ? true : undefined}
         className={`rounded-full px-3 py-1 text-sm font-medium transition-all ${
           locale === "en"
             ? "bg-primary text-white shadow-sm"

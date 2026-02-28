@@ -9,7 +9,8 @@
     "fun": "Fun",
     "cart": "Cart",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "skipToMain": "Skip to main content"
   },
   "home": {
     "heroTitle": "Welcome to Butcher Shop Šiško",
@@ -62,7 +63,9 @@
     "successTitle": "Order sent!",
     "successDesc": "Your order has been received. Preparation starts soon!",
     "goToMenu": "Back to menu",
-    "items": "items"
+    "items": "items",
+    "subtotal": "Subtotal",
+    "comboDiscount": "Combo discount"
   },
   "about": {
     "title": "About Us",
@@ -76,10 +79,13 @@
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Take a look at our dishes and ambiance",
-    "food": "Food",
-    "interior": "Interior",
-    "all": "All"
+    "subtitle": "Browse our dishes and ambiance",
+    "all": "All",
+    "izgledObjekta": "Premises",
+    "jelanaKilo": "Meat by Kilo",
+    "jelauLepinji": "In Bread",
+    "proces": "On the Grill",
+    "specijal": "Specials"
   },
   "contact": {
     "title": "Contact",

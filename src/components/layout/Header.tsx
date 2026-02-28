@@ -29,6 +29,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-sm shadow-lg">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+      >
+        {t("skipToMain")}
+      </a>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -66,6 +72,7 @@ export default function Header() {
             {/* Cart button */}
             <Link
               href="/korpa"
+              aria-label={t("cart")}
               className="relative rounded-lg p-2 text-text-light transition-colors hover:bg-wood-dark/50"
             >
               <ShoppingCart size={22} />

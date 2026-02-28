@@ -191,7 +191,7 @@ export const menuData: MenuCategory[] = [
         description: "Сочна пљескавица од 200г у лепињи са додацима",
         descriptionEn: "Juicy 200g burger patty in bread with toppings",
         options: [{ size: "200г", sizeEn: "200g", price: 420 }],
-        image: "/images/pljekaULepinjiDrveniStil.png",
+        image: "/images/jelauLepinji/pljekauLepinjiDrveniStil.png",
       },
       {
         id: "cevapi",

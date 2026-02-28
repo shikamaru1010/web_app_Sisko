@@ -1,13 +1,16 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Flame, Leaf, Award, MapPin, Clock, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { menuData } from "@/data/menu";
 import { RESTAURANT } from "@/lib/constants";
-import EmberParticles from "@/components/effects/EmberParticles";
+
+const EmberParticles = dynamic(() => import("@/components/effects/EmberParticles"), { ssr: false });
 
 const popularItems = ["mesano-sveze", "pljeskavica", "cevapi", "komplet-lepinja"];
 
@@ -15,6 +18,13 @@ export default function HomePage() {
   const locale = useLocale();
   const t = useTranslations("home");
   const isEn = locale === "en";
+  const prefersReduced = useReducedMotion();
+  const [showParticles, setShowParticles] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowParticles(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const popular = menuData
     .flatMap((cat) => cat.items)
@@ -28,7 +38,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <Image
             src="/images/4ovalaDrveniStil.png"
-            alt="Roštilj"
+            alt={isEn ? "Grilled meat on traditional grill" : "Месо на роштиљу"}
             fill
             className="object-cover object-center opacity-40 animate-ken-burns"
             priority
@@ -40,21 +50,21 @@ export default function HomePage() {
         {/* Layer 2: Smoke/ember overlay */}
         <div className="smoke-overlay" />
 
-        {/* Layer 3: Ember particles */}
-        <EmberParticles />
+        {/* Layer 3: Ember particles — deferred 1.5s to avoid blocking LCP */}
+        {showParticles && <EmberParticles />}
 
         {/* Layer 4: Content with staggered entrance */}
         <div className="relative mx-auto max-w-5xl px-4 pb-20 pt-24 text-center sm:pb-28 sm:pt-32">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={prefersReduced ? false : { opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={prefersReduced ? { duration: 0 } : { duration: 0.5 }}
             className="flex justify-center"
           >
             <div className="fire-glow rounded-2xl">
               <Image
                 src="/images/logoMesara.png"
-                alt="Шишко роштиљ-месара"
+                alt={isEn ? "Grill Butcher Shop Šiško logo" : "Лого Шишко роштиљ-месара"}
                 width={400}
                 height={140}
                 className="h-32 w-auto sm:h-44 brightness-110"
@@ -64,27 +74,27 @@ export default function HomePage() {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={prefersReduced ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={prefersReduced ? { duration: 0 } : { duration: 0.6, delay: 0.05 }}
             className="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-text-light sm:text-5xl lg:text-6xl"
           >
             {t("heroTitle")}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReduced ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={prefersReduced ? { duration: 0 } : { duration: 0.6, delay: 0.1 }}
             className="mx-auto mt-4 max-w-2xl text-base text-text-light/70 sm:text-lg"
           >
             {t("heroSubtitle")}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReduced ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={prefersReduced ? { duration: 0 } : { duration: 0.6, delay: 0.15 }}
             className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <Link
@@ -172,12 +182,13 @@ export default function HomePage() {
                       src={item.image}
                       alt={isEn ? item.nameEn : item.name}
                       fill
+                      loading="lazy"
                       className="object-cover transition-transform group-hover:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center bg-cream-dark">
-                      <span className="text-5xl opacity-40">🍖</span>
+                      <span className="text-5xl opacity-40" aria-hidden="true">🍖</span>
                     </div>
                   )}
                 </div>

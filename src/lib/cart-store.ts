@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { combos } from "@/data/combos";
 
 export type CompositionEntry = {
   name: string;
@@ -15,6 +16,7 @@ export type CartItem = {
   nameEn: string;
   price: number;
   quantity: number;
+  categoryId?: string;
   size?: string;
   sizeEn?: string;
   image?: string;
@@ -28,6 +30,8 @@ type CartStore = {
   updateQuantity: (id: string, quantity: number, size?: string) => void;
   clearCart: () => void;
   getTotalItems: () => number;
+  getSubtotal: () => number;
+  getComboDiscount: () => number;
   getTotalPrice: () => number;
 };
 
@@ -90,11 +94,32 @@ export const useCartStore = create<CartStore>()(
       getTotalItems: () =>
         get().items.reduce((sum, item) => sum + item.quantity, 0),
 
-      getTotalPrice: () =>
-        get().items.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        ),
+      getSubtotal: () =>
+        get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+
+      getComboDiscount: () => {
+        const items = get().items;
+        let discount = 0;
+        for (const combo of combos) {
+          if (combo.discount === 0) continue;
+          const requiredCats = combo.items.map((i) => i.categoryId);
+          const allPresent = requiredCats.every((cat) =>
+            items.some((i) => i.categoryId === cat)
+          );
+          if (!allPresent) continue;
+          // Apply discount to the cheapest item in each required category
+          for (const cat of requiredCats) {
+            const matching = items.filter((i) => i.categoryId === cat);
+            const cheapest = matching.reduce((min, i) =>
+              i.price < min.price ? i : min
+            );
+            discount += cheapest.price * (combo.discount / 100);
+          }
+        }
+        return Math.round(discount);
+      },
+
+      getTotalPrice: () => get().getSubtotal() - get().getComboDiscount(),
     }),
     {
       name: "mesara-sisko-cart",

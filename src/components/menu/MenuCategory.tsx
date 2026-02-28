@@ -58,6 +58,7 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
             <MenuItem
               key={item.id}
               item={item}
+              categoryId={category.id}
               showToppings={category.id === "grill-bread"}
             />
           ))}

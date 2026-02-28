@@ -39,15 +39,17 @@ export default function MenuPage() {
     const query = search.toLowerCase();
     const queryCyr = latinToCyrillic(query);
     const results = menuData.flatMap((cat) =>
-      cat.items.filter(
-        (item) =>
-          item.name.toLowerCase().includes(query) ||
-          item.name.toLowerCase().includes(queryCyr) ||
-          item.nameEn.toLowerCase().includes(query) ||
-          item.description?.toLowerCase().includes(query) ||
-          item.description?.toLowerCase().includes(queryCyr) ||
-          item.descriptionEn?.toLowerCase().includes(query)
-      )
+      cat.items
+        .filter(
+          (item) =>
+            item.name.toLowerCase().includes(query) ||
+            item.name.toLowerCase().includes(queryCyr) ||
+            item.nameEn.toLowerCase().includes(query) ||
+            item.description?.toLowerCase().includes(query) ||
+            item.description?.toLowerCase().includes(queryCyr) ||
+            item.descriptionEn?.toLowerCase().includes(query)
+        )
+        .map((item) => ({ ...item, categoryId: cat.id }))
     );
     return results;
   }, [search]);
@@ -101,7 +103,7 @@ export default function MenuPage() {
             {filteredItems.length > 0 ? (
               <div className="flex flex-col gap-2 sm:gap-3">
                 {filteredItems.map((item) => (
-                  <MenuItem key={item.id} item={item} />
+                  <MenuItem key={item.id} item={item} categoryId={item.categoryId} />
                 ))}
               </div>
             ) : (

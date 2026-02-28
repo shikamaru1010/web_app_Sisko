@@ -10,6 +10,7 @@ import type { MenuItem as MenuItemType } from "@/data/menu";
 
 type Props = {
   item: MenuItemType;
+  categoryId: string;
   showToppings?: boolean;
 };
 
@@ -18,7 +19,7 @@ const WEIGHT_OPTIONS = [
   { value: 1, label: "1кг", labelEn: "1kg" },
 ];
 
-export default function MenuItem({ item, showToppings = false }: Props) {
+export default function MenuItem({ item, categoryId, showToppings = false }: Props) {
   const locale = useLocale();
   const t = useTranslations("menu");
   const isEn = locale === "en";
@@ -65,6 +66,7 @@ export default function MenuItem({ item, showToppings = false }: Props) {
         name: item.name + toppingsText,
         nameEn: item.nameEn + toppingsText,
         price: getPrice(),
+        categoryId,
         size: isKgItem
           ? `${selectedWeight * 1000}г`
           : item.options?.[selectedOption]?.size,
