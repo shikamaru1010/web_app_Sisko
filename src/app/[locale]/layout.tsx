@@ -73,6 +73,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className="min-h-screen bg-cream text-text-dark font-[family-name:var(--font-body)]">
         <NextIntlClientProvider messages={messages}>
+          <div className="noise-overlay" aria-hidden="true" />
           <Header />
           <main id="main-content" className="min-h-screen">{children}</main>
           <Footer />

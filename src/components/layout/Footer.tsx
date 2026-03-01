@@ -12,7 +12,7 @@ export default function Footer() {
   const isEn = locale === "en";
 
   return (
-    <footer className="bg-charcoal text-text-light">
+    <footer className="bg-charcoal text-text-light gradient-border-top">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
@@ -107,7 +107,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 border-t border-wood-dark/30 pt-6 text-center">
+        <div className="mt-10 pt-6 text-center gradient-border-top">
           <p className="text-xs text-text-light/40">
             &copy; {new Date().getFullYear()} {isEn ? RESTAURANT.fullName.en : RESTAURANT.fullName.sr}.{" "}
             {t("footer.rights")}.

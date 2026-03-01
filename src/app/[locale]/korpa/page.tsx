@@ -130,8 +130,8 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="bg-charcoal px-4 pb-8 pt-8 text-center gradient-border-bottom">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-1 text-sm text-text-light/60">
@@ -146,7 +146,7 @@ export default function CartPage() {
             <motion.div
               key={`${item.id}-${item.size}`}
               layout
-              className="flex items-center gap-3 rounded-xl glass-card p-3 sm:gap-4 sm:p-4"
+              className="flex items-center gap-3 rounded-xl glass-card-flat p-3 sm:gap-4 sm:p-4"
             >
               {/* Image */}
               {item.image ? (
@@ -223,7 +223,7 @@ export default function CartPage() {
         </div>
 
         {/* Total */}
-        <div className="mt-6 rounded-xl bg-charcoal px-6 py-4 text-text-light">
+        <div className="mt-6 rounded-xl bg-charcoal px-6 py-4 text-text-light shadow-lg border border-accent/10">
           {getComboDiscount() > 0 && (
             <>
               <div className="flex items-center justify-between pb-2 text-sm text-text-light/70">
@@ -258,7 +258,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg px-4 py-2.5 text-sm text-text-dark input-premium"
             />
           </div>
           <div>
@@ -272,7 +272,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
-              className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg px-4 py-2.5 text-sm text-text-dark input-premium"
             />
           </div>
           <div>
@@ -299,7 +299,7 @@ export default function CartPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="shimmer-btn flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-base font-bold text-white shadow-lg shadow-accent/25 transition-all hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/35 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {submitting ? (
               <>

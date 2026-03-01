@@ -61,8 +61,8 @@ export default function MenuPage() {
   return (
     <div className="min-h-screen bg-cream pb-24">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="bg-charcoal px-4 pb-8 pt-8 text-center gradient-border-bottom">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
@@ -79,7 +79,7 @@ export default function MenuPage() {
           <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
             <button
               onClick={() => scrollToCategory("combos")}
-              className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 border border-accent/30 px-4 py-2 text-xs font-medium text-accent shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
+              className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 border border-accent/30 px-4 py-2 text-xs font-medium text-accent shadow-sm shadow-accent/10 transition-all hover:bg-accent hover:text-white hover:shadow-md hover:shadow-accent/20 active:scale-95"
             >
               <Tag size={12} />
               <span>{isEn ? "Combos" : "Комбо"}</span>
@@ -88,7 +88,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 onClick={() => scrollToCategory(cat.id)}
-                className="flex shrink-0 items-center gap-1.5 rounded-full bg-cream-dark px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
+                className="flex shrink-0 items-center gap-1.5 rounded-full bg-cream-dark px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white hover:shadow-md hover:shadow-accent/15 active:scale-95"
               >
                 <span>{cat.icon}</span>
                 <span>{isEn ? cat.nameEn : cat.name}</span>
@@ -116,7 +116,7 @@ export default function MenuPage() {
         ) : (
           <div className="flex flex-col gap-4">
             {/* Combo section */}
-            <div id="combos" className="rounded-2xl bg-gradient-to-br from-accent/5 to-secondary/5 border border-accent/20 shadow-sm">
+            <div id="combos" className="rounded-2xl bg-gradient-to-br from-accent/5 via-cream-dark to-secondary/5 border border-accent/20 shadow-md shadow-accent/5">
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center gap-3 mb-4">
                   <Tag size={22} className="text-accent" />

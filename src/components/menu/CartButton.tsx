@@ -24,7 +24,7 @@ export default function CartButton() {
       >
         <Link
           href="/korpa"
-          className="flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-white shadow-xl transition-all hover:bg-accent-hover hover:shadow-2xl active:scale-95"
+          className="shimmer-btn flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-white shadow-xl shadow-accent/25 transition-all hover:bg-accent-hover hover:shadow-2xl hover:shadow-accent/35 active:scale-95"
         >
           <ShoppingCart size={20} />
           <span className="font-semibold">

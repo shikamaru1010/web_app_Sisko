@@ -77,7 +77,7 @@ export default function HomePage() {
             initial={prefersReduced ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={prefersReduced ? { duration: 0 } : { duration: 0.6, delay: 0.05 }}
-            className="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-text-light sm:text-5xl lg:text-6xl"
+            className="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-text-light text-glow sm:text-5xl lg:text-6xl"
           >
             {t("heroTitle")}
           </motion.h1>
@@ -99,7 +99,7 @@ export default function HomePage() {
           >
             <Link
               href="/meni"
-              className="flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-95 fire-glow"
+              className="shimmer-btn flex items-center gap-2 rounded-full bg-accent px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-95 fire-glow"
             >
               {t("ctaMenu")}
               <ArrowRight size={18} />
@@ -118,8 +118,11 @@ export default function HomePage() {
       </section>
 
       {/* ===== WHY US ===== */}
-      <section className="bg-cream py-16 sm:py-20">
+      <section className="bg-cream py-16 sm:py-20 gradient-border-top">
         <div className="mx-auto max-w-5xl px-4">
+          <div className="section-divider mb-2">
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent/60">{t("whyUs")}</span>
+          </div>
           <h2 className="text-center font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
             {t("whyUs")}
           </h2>
@@ -147,7 +150,7 @@ export default function HomePage() {
                 className="glass-card rounded-2xl p-6 text-center"
               >
                 <div className="mb-4 flex justify-center">
-                  <div className="rounded-xl bg-accent/10 p-3">
+                  <div className="rounded-xl bg-accent/10 p-3 shadow-lg shadow-accent/5 transition-shadow duration-300 group-hover:shadow-accent/10">
                     {card.icon}
                   </div>
                 </div>
@@ -164,8 +167,11 @@ export default function HomePage() {
       </section>
 
       {/* ===== POPULAR ITEMS ===== */}
-      <section className="bg-cream-dark py-16 sm:py-20">
+      <section className="bg-cream-dark py-16 sm:py-20 gradient-border-top">
         <div className="mx-auto max-w-5xl px-4">
+          <div className="section-divider mb-2">
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent/60">{t("popularItems")}</span>
+          </div>
           <h2 className="text-center font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
             {t("popularItems")}
           </h2>
@@ -183,7 +189,7 @@ export default function HomePage() {
                       alt={isEn ? item.nameEn : item.name}
                       fill
                       loading="lazy"
-                      className="object-cover transition-transform group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   ) : (
@@ -191,6 +197,8 @@ export default function HomePage() {
                       <span className="text-5xl opacity-40" aria-hidden="true">🍖</span>
                     </div>
                   )}
+                  {/* Gradient overlay for better contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
                 <div className="p-4">
                   <h3 className="font-[family-name:var(--font-heading)] text-sm font-semibold text-text-dark">
@@ -212,7 +220,7 @@ export default function HomePage() {
           <div className="mt-8 text-center">
             <Link
               href="/meni"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover active:scale-95"
+              className="shimmer-btn inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white shadow-lg shadow-accent/20 transition-all hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/30 active:scale-95"
             >
               {t("viewFullMenu")}
               <ArrowRight size={18} />
@@ -222,25 +230,29 @@ export default function HomePage() {
       </section>
 
       {/* ===== FIND US ===== */}
-      <section className="bg-cream py-16 sm:py-20">
+      <section className="bg-cream py-16 sm:py-20 gradient-border-top">
         <div className="mx-auto max-w-5xl px-4 text-center">
           <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
             {t("findUs")}
           </h2>
-          <div className="mt-8 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12">
-            <div className="flex items-center gap-3">
-              <MapPin size={24} className="text-accent" />
-              <span className="text-text-muted">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+            <div className="flex items-center gap-3 rounded-xl glass-card px-5 py-4">
+              <div className="rounded-lg bg-accent/10 p-2">
+                <MapPin size={20} className="text-accent" />
+              </div>
+              <span className="text-sm text-text-muted">
                 {isEn ? RESTAURANT.address.en : RESTAURANT.address.sr}
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <Clock size={24} className="text-accent" />
+            <div className="flex items-center gap-3 rounded-xl glass-card px-5 py-4">
+              <div className="rounded-lg bg-accent/10 p-2">
+                <Clock size={20} className="text-accent" />
+              </div>
               <div className="text-left">
                 <span className="block text-sm font-semibold text-text-dark">
                   {t("workingHours")}
                 </span>
-                <span className="text-sm text-text-muted">
+                <span className="text-xs text-text-muted">
                   {isEn ? RESTAURANT.workingHours.en : RESTAURANT.workingHours.sr}
                 </span>
               </div>
@@ -249,7 +261,7 @@ export default function HomePage() {
           <div className="mt-8">
             <Link
               href="/lokacija"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-6 py-3 font-semibold text-accent transition-all hover:bg-accent hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-6 py-3 font-semibold text-accent transition-all hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/20"
             >
               <MapPin size={18} />
               {isEn ? "View on map" : "Погледај на мапи"}

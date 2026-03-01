@@ -46,9 +46,9 @@ export default function FunPage() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
+      <div className="bg-charcoal px-4 pb-10 pt-8 text-center gradient-border-bottom">
         <span className="text-5xl">🎮</span>
-        <h1 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+        <h1 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
@@ -65,7 +65,7 @@ export default function FunPage() {
             >
               <Link
                 href={game.href}
-                className={`group block rounded-2xl bg-gradient-to-br ${game.color} p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1`}
+                className={`group block rounded-2xl bg-gradient-to-br ${game.color} p-6 shadow-sm border border-transparent transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1.5 hover:border-accent/10`}
               >
                 <span className="inline-block rounded-lg bg-charcoal-light/80 px-2.5 py-1 text-xs font-medium text-text-muted">
                   {game.category}

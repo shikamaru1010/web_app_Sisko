@@ -87,8 +87,8 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="bg-charcoal px-4 pb-10 pt-8 text-center gradient-border-bottom">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
@@ -103,8 +103,8 @@ export default function GalleryPage() {
               onClick={() => setFilter(cat)}
               className={`rounded-full px-4 py-2 text-xs font-medium transition-all sm:px-5 sm:text-sm ${
                 filter === cat
-                  ? "bg-accent text-white shadow-md"
-                  : "bg-charcoal-light text-text-dark hover:bg-charcoal"
+                  ? "bg-accent text-white shadow-md shadow-accent/20"
+                  : "bg-charcoal-light text-text-dark hover:bg-charcoal hover:shadow-sm"
               }`}
             >
               {t(cat)}
@@ -117,7 +117,7 @@ export default function GalleryPage() {
           {filtered.map((img, i) => (
             <div
               key={img.src}
-              className="group relative cursor-pointer overflow-hidden rounded-xl ring-1 ring-accent/10 shadow-sm"
+              className="gallery-img-hover group relative cursor-pointer overflow-hidden rounded-xl ring-1 ring-accent/10 shadow-sm transition-all duration-300 hover:ring-accent/25 hover:shadow-lg hover:shadow-accent/5"
               onClick={() => setLightbox(i)}
             >
               <div className="relative aspect-square">
@@ -125,10 +125,9 @@ export default function GalleryPage() {
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-charcoal/0 transition-colors group-hover:bg-charcoal/20" />
               </div>
             </div>
           ))}
@@ -143,7 +142,7 @@ export default function GalleryPage() {
         >
           <button
             onClick={closeLightbox}
-            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
           >
             <X size={24} />
           </button>
@@ -151,7 +150,7 @@ export default function GalleryPage() {
           {lightbox > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-              className="absolute left-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute left-4 z-10 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
             >
               <ChevronLeft size={24} />
             </button>
@@ -160,11 +159,16 @@ export default function GalleryPage() {
           {lightbox < filtered.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(1); }}
-              className="absolute right-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute right-4 z-10 rounded-full bg-white/10 p-2.5 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
             >
               <ChevronRight size={24} />
             </button>
           )}
+
+          {/* Image counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 rounded-full bg-black/50 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur-sm">
+            {lightbox + 1} / {filtered.length}
+          </div>
 
           <div
             className="relative max-h-[85vh] max-w-[90vw]"

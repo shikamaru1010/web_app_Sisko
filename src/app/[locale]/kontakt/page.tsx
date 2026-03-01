@@ -37,8 +37,8 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="bg-charcoal px-4 pb-10 pt-8 text-center gradient-border-bottom">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                      className="w-full rounded-lg px-4 py-2.5 text-sm text-text-dark input-premium"
                     />
                   </div>
                   <div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-lg border border-charcoal-light bg-charcoal-light px-4 py-2.5 text-sm text-text-dark transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                      className="w-full rounded-lg px-4 py-2.5 text-sm text-text-dark input-premium"
                     />
                   </div>
                   <div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-white transition-all hover:bg-accent-hover active:scale-[0.98] disabled:opacity-60"
+                    className="shimmer-btn flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-3 font-semibold text-white shadow-lg shadow-accent/20 transition-all hover:bg-accent-hover hover:shadow-xl hover:shadow-accent/30 active:scale-[0.98] disabled:opacity-60"
                   >
                     <Send size={18} />
                     {loading

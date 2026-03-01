@@ -28,7 +28,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-sm shadow-lg">
+    <header className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-md shadow-lg header-glow">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-white focus:outline-none"
@@ -58,7 +58,7 @@ export default function Header() {
               <Link
                 key={link.key}
                 href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-text-light/80 transition-colors hover:bg-wood-dark/50 hover:text-accent"
+                className="nav-link rounded-lg px-3 py-2 text-sm font-medium text-text-light/80 transition-colors hover:bg-wood-dark/30 hover:text-accent"
               >
                 {t(link.key)}
               </Link>
@@ -77,7 +77,7 @@ export default function Header() {
             >
               <ShoppingCart size={22} />
               {mounted && totalItems > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white badge-pulse shadow-lg shadow-accent/30">
                   {totalItems}
                 </span>
               )}

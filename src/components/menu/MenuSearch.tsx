@@ -22,7 +22,7 @@ export default function MenuSearch({ value, onChange }: Props) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={t("search")}
-        className="w-full rounded-xl border border-charcoal-light bg-charcoal-light py-3 pl-12 pr-10 text-sm text-text-dark placeholder:text-text-muted/60 shadow-sm transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+        className="w-full rounded-xl py-3 pl-12 pr-10 text-sm text-text-dark placeholder:text-text-muted/60 shadow-sm input-premium"
       />
       {value && (
         <button

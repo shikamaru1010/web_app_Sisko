@@ -88,7 +88,7 @@ export default function MenuItem({ item, categoryId, showToppings = false }: Pro
   const unit = item.unit ? (isEn ? item.unitEn : item.unit) : null;
 
   return (
-    <div className="group rounded-xl glass-card transition-all">
+    <div className="group rounded-xl glass-card-flat transition-all">
       <div className="flex gap-3 p-3 sm:gap-4 sm:p-4">
         {/* Image */}
         {item.image ? (
@@ -97,7 +97,7 @@ export default function MenuItem({ item, categoryId, showToppings = false }: Pro
               src={item.image}
               alt={name}
               fill
-              className="object-cover transition-transform group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 640px) 80px, 96px"
             />
           </div>
@@ -201,7 +201,7 @@ export default function MenuItem({ item, categoryId, showToppings = false }: Pro
               {/* Add to cart */}
               <button
                 onClick={handleAdd}
-                className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-accent-hover hover:shadow-md active:scale-95 sm:text-sm"
+                className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-sm shadow-accent/20 transition-all hover:bg-accent-hover hover:shadow-md hover:shadow-accent/30 active:scale-95 sm:text-sm"
               >
                 <Plus size={16} />
                 <span className="hidden sm:inline">{t("addToCart")}</span>

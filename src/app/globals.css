@@ -91,15 +91,37 @@ html {
   border: 1px solid rgba(166, 28, 28, 0.1);
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  transition: border-color 0.3s, box-shadow 0.3s;
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(166, 28, 28, 0.22);
+  border-color: rgba(166, 28, 28, 0.28);
   box-shadow:
-    0 8px 32px rgba(166, 28, 28, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 8px 40px rgba(166, 28, 28, 0.08),
+    0 2px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transform: translateY(-2px);
+}
+
+/* Card without lift (for inline cards like menu items) */
+.glass-card-flat {
+  background: rgba(42, 30, 35, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(166, 28, 28, 0.1);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.glass-card-flat:hover {
+  border-color: rgba(166, 28, 28, 0.28);
+  box-shadow:
+    0 8px 40px rgba(166, 28, 28, 0.08),
+    0 2px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 /* ========= HERO ANIMATIONS ========= */
@@ -137,8 +159,236 @@ html {
   animation: fireGlow 2s ease-in-out infinite alternate;
 }
 
+/* ========= TEXT GLOW — hero headings ========= */
+.text-glow {
+  text-shadow:
+    0 0 40px rgba(166, 28, 28, 0.15),
+    0 0 80px rgba(166, 28, 28, 0.05);
+}
+
+/* ========= SHIMMER BUTTON — premium CTA ========= */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  transition: none;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ========= GRADIENT ACCENT BORDER — decorative top/bottom borders ========= */
+.gradient-border-top {
+  position: relative;
+}
+
+.gradient-border-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(166, 28, 28, 0.4),
+    rgba(199, 90, 42, 0.3),
+    rgba(166, 28, 28, 0.4),
+    transparent
+  );
+}
+
+.gradient-border-bottom {
+  position: relative;
+}
+
+.gradient-border-bottom::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(166, 28, 28, 0.4),
+    rgba(199, 90, 42, 0.3),
+    rgba(166, 28, 28, 0.4),
+    transparent
+  );
+}
+
+/* ========= HEADER GLOW LINE ========= */
+.header-glow {
+  position: relative;
+}
+
+.header-glow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(166, 28, 28, 0.5),
+    rgba(199, 90, 42, 0.4),
+    rgba(166, 28, 28, 0.5),
+    transparent
+  );
+}
+
+/* ========= NAV LINK HOVER UNDERLINE ========= */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 1px;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
+.nav-link:hover::after {
+  left: 25%;
+  right: 25%;
+}
+
+/* ========= IMAGE OVERLAY GRADIENT — bottom fade on images ========= */
+.img-overlay-bottom {
+  position: relative;
+}
+
+.img-overlay-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(14, 10, 11, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* ========= FOCUS RING — unified premium focus style ========= */
+.focus-ring:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-cream),
+    0 0 0 4px rgba(166, 28, 28, 0.5);
+}
+
+/* ========= INPUT PREMIUM — better form inputs ========= */
+.input-premium {
+  background: rgba(46, 33, 40, 0.8);
+  border: 1px solid rgba(166, 28, 28, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.input-premium:focus {
+  border-color: var(--color-accent);
+  background: rgba(46, 33, 40, 1);
+  box-shadow:
+    0 0 0 3px rgba(166, 28, 28, 0.12),
+    0 0 20px rgba(166, 28, 28, 0.05);
+}
+
+/* ========= SECTION DIVIDER — decorative ========= */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(166, 28, 28, 0.25),
+    transparent
+  );
+}
+
+/* ========= BADGE PULSE — cart badge ========= */
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.badge-pulse {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* ========= GALLERY IMAGE HOVER ========= */
+.gallery-img-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-img-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(166, 28, 28, 0.08) 0%,
+    rgba(14, 10, 11, 0.4) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-img-hover:hover::after {
+  opacity: 1;
+}
+
 /* ========= EXISTING ========= */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========= SUBTLE NOISE TEXTURE ========= */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }

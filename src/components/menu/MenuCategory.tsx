@@ -20,7 +20,7 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
   const name = isEn ? category.nameEn : category.name;
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-cream-dark/50 shadow-sm" id={category.id}>
+    <div className="overflow-hidden rounded-2xl bg-cream-dark/50 shadow-sm border border-transparent hover:border-accent/5 transition-colors" id={category.id}>
       {/* Category header */}
       <button
         onClick={() => setIsOpen(!isOpen)}

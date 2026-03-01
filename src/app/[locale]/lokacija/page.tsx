@@ -11,15 +11,15 @@ export default function LocationPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="bg-charcoal px-4 pb-10 pt-8 text-center gradient-border-bottom">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-glow sm:text-4xl">
           {t("title")}
         </h1>
         <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
       </div>
 
       <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6">
-        <div className="overflow-hidden rounded-2xl shadow-lg">
+        <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-accent/10">
           <iframe
             src={RESTAURANT.googleMapsEmbed}
             width="100%"
