@@ -211,6 +211,11 @@ export default function HomePage() {
                       {isEn ? "RSD" : "дин"}
                       {item.unit && `/${isEn ? item.unitEn : item.unit}`}
                     </span>
+                    {!item.unit && item.options?.[0]?.size && (
+                      <span className="text-xs font-normal text-text-muted">
+                        {" "}/ {isEn ? item.options[0].sizeEn : item.options[0].size}
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -235,9 +240,9 @@ export default function HomePage() {
           <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark sm:text-3xl">
             {t("findUs")}
           </h2>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+          <div className="mx-auto mt-8 flex max-w-md flex-col items-stretch gap-4 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-6">
             <div className="flex items-center gap-3 rounded-xl glass-card px-5 py-4">
-              <div className="rounded-lg bg-accent/10 p-2">
+              <div className="shrink-0 rounded-lg bg-accent/10 p-2">
                 <MapPin size={20} className="text-accent" />
               </div>
               <span className="text-sm text-text-muted">
@@ -245,7 +250,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="flex items-center gap-3 rounded-xl glass-card px-5 py-4">
-              <div className="rounded-lg bg-accent/10 p-2">
+              <div className="shrink-0 rounded-lg bg-accent/10 p-2">
                 <Clock size={20} className="text-accent" />
               </div>
               <div className="text-left">

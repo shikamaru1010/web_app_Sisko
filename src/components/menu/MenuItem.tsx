@@ -27,7 +27,7 @@ export default function MenuItem({ item, categoryId, showToppings = false }: Pro
   const [selectedOption, setSelectedOption] = useState(0);
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [toppingsOpen, setToppingsOpen] = useState(false);
-  const [selectedWeight, setSelectedWeight] = useState(0.5);
+  const [selectedWeight, setSelectedWeight] = useState(1);
 
   const isKgItem = item.unit === "кг" || item.unitEn === "kg";
 

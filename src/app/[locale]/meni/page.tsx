@@ -2,7 +2,16 @@
 
 import { useState, useMemo } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Tag } from "lucide-react";
+import { Tag, Flame, Sandwich, Fish, Wheat, Salad, CupSoda, SearchX, type LucideIcon } from "lucide-react";
+
+const categoryIcons: Record<string, LucideIcon> = {
+  flame: Flame,
+  sandwich: Sandwich,
+  fish: Fish,
+  wheat: Wheat,
+  salad: Salad,
+  "cup-soda": CupSoda,
+};
 import { menuData } from "@/data/menu";
 import { combos } from "@/data/combos";
 import MenuCategory from "@/components/menu/MenuCategory";
@@ -90,7 +99,7 @@ export default function MenuPage() {
                 onClick={() => scrollToCategory(cat.id)}
                 className="flex shrink-0 items-center gap-1.5 rounded-full bg-cream-dark px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white hover:shadow-md hover:shadow-accent/15 active:scale-95"
               >
-                <span>{cat.icon}</span>
+                {(() => { const Icon = categoryIcons[cat.icon]; return Icon ? <Icon size={14} /> : null; })()}
                 <span>{isEn ? cat.nameEn : cat.name}</span>
               </button>
             ))}
@@ -108,7 +117,7 @@ export default function MenuPage() {
               </div>
             ) : (
               <div className="py-16 text-center">
-                <span className="text-5xl">🔍</span>
+                <SearchX size={48} className="mx-auto text-text-muted/50" />
                 <p className="mt-4 text-text-muted">{t("noResults")}</p>
               </div>
             )}
@@ -135,7 +144,9 @@ export default function MenuPage() {
                       key={combo.id}
                       className="rounded-xl glass-card p-4"
                     >
-                      <div className="text-2xl mb-2">{combo.emoji}</div>
+                      <div className="mb-2">
+                        {(() => { const Icon = categoryIcons[combo.emoji]; return Icon ? <Icon size={24} className="text-accent" /> : null; })()}
+                      </div>
                       <h3 className="font-[family-name:var(--font-heading)] text-sm font-bold text-text-dark">
                         {isEn ? combo.nameEn : combo.name}
                       </h3>

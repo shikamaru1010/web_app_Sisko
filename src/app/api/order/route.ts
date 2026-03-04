@@ -2,17 +2,42 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { createServerSupabaseClient } from "@/lib/supabase";
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, phone, note, items, total, orderDetails } = body;
+    const { items, total, orderDetails } = body;
 
-    // Validate required fields
+    // Trim and validate inputs
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim() : "";
+    const note = typeof body.note === "string" ? body.note.trim() : "";
+
     if (!name || !phone || !items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    if (name.length > 100) {
+      return NextResponse.json({ error: "Name too long" }, { status: 400 });
+    }
+
+    if (!/^[+\d\s\-()]{6,20}$/.test(phone)) {
+      return NextResponse.json({ error: "Invalid phone format" }, { status: 400 });
+    }
+
+    if (note.length > 500) {
+      return NextResponse.json({ error: "Note too long" }, { status: 400 });
     }
 
     // Insert order into Supabase
@@ -61,7 +86,7 @@ export async function POST(request: NextRequest) {
           .map(
             (item: { name: string; size?: string; quantity: number; price: number }) =>
               `<tr>
-                <td style="padding:6px 12px;border-bottom:1px solid #eee;">${item.name}${item.size ? ` (${item.size})` : ""}</td>
+                <td style="padding:6px 12px;border-bottom:1px solid #eee;">${escapeHtml(item.name)}${item.size ? ` (${escapeHtml(item.size)})` : ""}</td>
                 <td style="padding:6px 12px;border-bottom:1px solid #eee;text-align:center;">${item.quantity}</td>
                 <td style="padding:6px 12px;border-bottom:1px solid #eee;text-align:right;">${(item.price * item.quantity).toLocaleString("sr-RS")} дин</td>
               </tr>`
@@ -74,11 +99,11 @@ export async function POST(request: NextRequest) {
               Нова поруџбина
             </h1>
             <table style="width:100%;margin-bottom:16px;">
-              <tr><td style="color:#666;padding:4px 0;">Име:</td><td style="font-weight:bold;">${name}</td></tr>
-              <tr><td style="color:#666;padding:4px 0;">Телефон:</td><td style="font-weight:bold;">${phone}</td></tr>
+              <tr><td style="color:#666;padding:4px 0;">Име:</td><td style="font-weight:bold;">${escapeHtml(name)}</td></tr>
+              <tr><td style="color:#666;padding:4px 0;">Телефон:</td><td style="font-weight:bold;">${escapeHtml(phone)}</td></tr>
               <tr><td style="color:#666;padding:4px 0;">Време:</td><td style="font-weight:bold;">${now}</td></tr>
             </table>
-            ${note ? `<div style="background:#fff8e1;padding:10px 14px;border-radius:6px;margin-bottom:16px;border-left:3px solid #ffa000;"><strong>Напомена:</strong> ${note}</div>` : ""}
+            ${note ? `<div style="background:#fff8e1;padding:10px 14px;border-radius:6px;margin-bottom:16px;border-left:3px solid #ffa000;"><strong>Напомена:</strong> ${escapeHtml(note)}</div>` : ""}
             <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
               <thead>
                 <tr style="background:#f5f5f5;">
@@ -98,7 +123,7 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: "Месара Шишко <onboarding@resend.dev>",
           to: restaurantEmail,
-          subject: `Нова поруџбина — ${name}`,
+          subject: `Нова поруџбина — ${escapeHtml(name)}`,
           html,
         });
       }

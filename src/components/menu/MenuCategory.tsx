@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Flame, Sandwich, Fish, Wheat, Salad, CupSoda, type LucideIcon } from "lucide-react";
+
+const categoryIcons: Record<string, LucideIcon> = {
+  flame: Flame,
+  sandwich: Sandwich,
+  fish: Fish,
+  wheat: Wheat,
+  salad: Salad,
+  "cup-soda": CupSoda,
+};
 import MenuItem from "./MenuItem";
 import type { MenuCategory as MenuCategoryType } from "@/data/menu";
 
@@ -27,7 +36,7 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
         className="flex w-full items-center justify-between px-4 py-4 text-left transition-colors hover:bg-cream-dark sm:px-6"
       >
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{category.icon}</span>
+          {(() => { const Icon = categoryIcons[category.icon]; return Icon ? <Icon size={24} className="text-accent" /> : null; })()}
           <div>
             <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-text-dark sm:text-xl">
               {name}

@@ -109,10 +109,10 @@ UI/UX DESIGN review 23.02.2026.
       2.  Slika hero landing page ne valja --> uradjeno (25.02)
       3.  U meniju da se racuna popust na ukupnu cenu pri racunanju ogovarajucih kombo ponuda --> uradjeno (26.02)
       4.  Zameniti slike koje stoje na z pattern-u na stranici o nama ( sve 3 slike zameniti opcionalno ) --> uradjeno (25.02)
-      5.  Stranica Galerija ( opcije jela i enterijer ) - prerasporediti odredjene slike i dodati neophodne koje imam na viberu -- strukturno dekomponovati stranicu galerija
+      5.  Stranica Galerija ( opcije jela i enterijer ) - prerasporediti odredjene slike i dodati neophodne koje imam na viberu -- strukturno dekomponovati stranicu galerija --> uradjeno (04.03)
       6.  Zabava pitanja ( pozabaviti se koje da stoji koje da se zameni )
-      7.  Azurirati trenutno vreme rada ( mozda za google preduzeca mozda i ovako samo manuelno azuriratii)
+      7.  Azurirati trenutno vreme rada ( mozda za google preduzeca mozda i ovako samo manuelno azuriratii) --> uradjeno (04.03)
 
 Telefon ekran:
 
-      1. Sekcija Pronadjite nas na pocetnoj stranici treba da budu oba tekst i ikonice pored njih u ravni ( isto udaljene od obe ivice a ne kao sto je trenutno ikonica mape i tekst sa njene desne strance vise uvucen.
+      1. Sekcija Pronadjite nas na pocetnoj stranici treba da budu oba tekst i ikonice pored njih u ravni ( isto udaljene od obe ivice a ne kao sto je trenutno ikonica mape i tekst sa njene desne strance vise uvucen ) --> uradjeno (04.03)

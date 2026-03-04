@@ -80,12 +80,14 @@
   "gallery": {
     "title": "Gallery",
     "subtitle": "Browse our dishes and ambiance",
-    "all": "All",
-    "izgledObjekta": "Premises",
-    "jelanaKilo": "Meat by Kilo",
+    "sectionFood": "Food",
+    "sectionInterior": "Interior",
+    "all-food": "All",
+    "jelanaKilo": "By Kilo",
     "jelauLepinji": "In Bread",
     "proces": "On the Grill",
-    "specijal": "Specials"
+    "specijal": "Specials",
+    "photoCount": "photos"
   },
   "contact": {
     "title": "Contact",

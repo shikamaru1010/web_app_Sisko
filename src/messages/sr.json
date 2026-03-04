@@ -80,12 +80,14 @@
   "gallery": {
     "title": "Галерија",
     "subtitle": "Погледајте наша јела и амбијент",
-    "all": "Све",
-    "izgledObjekta": "Изглед објекта",
-    "jelanaKilo": "Јела на кило",
+    "sectionFood": "Јела",
+    "sectionInterior": "Ентеријер",
+    "all-food": "Све",
+    "jelanaKilo": "На кило",
     "jelauLepinji": "У лепињи",
     "proces": "Роштиљ",
-    "specijal": "Специјалитети"
+    "specijal": "Специјалитети",
+    "photoCount": "фотографија"
   },
   "contact": {
     "title": "Контакт",
