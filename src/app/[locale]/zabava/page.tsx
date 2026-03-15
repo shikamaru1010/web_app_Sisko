@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Brain, Puzzle, Gamepad2, UtensilsCrossed } from "lucide-react";
+import { Brain, Puzzle, Gamepad2, UtensilsCrossed, ArrowRight } from "lucide-react";
 
 export default function FunPage() {
   const t = useTranslations("fun");
@@ -12,51 +12,55 @@ export default function FunPage() {
   const games = [
     {
       href: `/${locale}/zabava/kviz`,
-      icon: <Brain size={36} className="text-accent" />,
+      icon: <Brain size={32} className="text-accent" />,
       title: t("quiz"),
       desc: t("quizDesc"),
       category: t("forAdults"),
-      color: "from-accent/10 to-secondary/10",
+      color: "from-accent/8 to-secondary/8",
+      borderColor: "border-accent/15",
     },
     {
       href: `/${locale}/zabava/kviz-deca`,
-      icon: <Puzzle size={36} className="text-ember" />,
+      icon: <Puzzle size={32} className="text-ember" />,
       title: t("kidsQuiz"),
       desc: t("kidsQuizDesc"),
       category: t("forKids"),
-      color: "from-ember/10 to-accent/10",
+      color: "from-ember/8 to-accent/8",
+      borderColor: "border-ember/15",
     },
     {
       href: `/${locale}/zabava/memory`,
-      icon: <Gamepad2 size={36} className="text-primary" />,
+      icon: <Gamepad2 size={32} className="text-primary" />,
       title: t("memory"),
       desc: t("memoryDesc"),
       category: t("forKids"),
-      color: "from-primary/10 to-wood-light/20",
+      color: "from-primary/8 to-wood-light/15",
+      borderColor: "border-primary/15",
     },
     {
       href: `/${locale}/zabava/sastavi-obrok`,
-      icon: <UtensilsCrossed size={36} className="text-secondary" />,
+      icon: <UtensilsCrossed size={32} className="text-secondary" />,
       title: t("buildMeal"),
       desc: t("buildMealDesc"),
       category: t("forKids"),
-      color: "from-secondary/10 to-wood-light/20",
+      color: "from-secondary/8 to-wood-light/15",
+      borderColor: "border-secondary/15",
     },
   ];
 
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
-        <span className="text-5xl">🎮</span>
-        <h1 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="page-header px-4 pb-12 pt-10 text-center">
+        <span className="text-4xl">🎮</span>
+        <h1 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-shadow-subtle sm:text-4xl">
           {t("title")}
         </h1>
-        <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
+        <p className="mt-2 text-sm text-text-light/50">{t("subtitle")}</p>
       </div>
 
-      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-        <div className="grid gap-4 sm:grid-cols-2">
+      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+        <div className="grid gap-5 sm:grid-cols-2">
           {games.map((game, i) => (
             <motion.div
               key={i}
@@ -66,18 +70,19 @@ export default function FunPage() {
             >
               <Link
                 href={game.href}
-                className={`group block rounded-2xl bg-gradient-to-br ${game.color} p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-1`}
+                className={`group block rounded-2xl border ${game.borderColor} bg-gradient-to-br ${game.color} p-7 transition-all hover:shadow-md hover:-translate-y-1`}
               >
-                <span className="inline-block rounded-lg bg-white/80 px-2.5 py-1 text-xs font-medium text-text-muted">
+                <span className="inline-block rounded-full border border-wood-light/20 bg-white/90 px-3 py-1 text-xs font-medium text-text-muted">
                   {game.category}
                 </span>
-                <div className="mt-4 mb-3">{game.icon}</div>
+                <div className="mt-5 mb-3">{game.icon}</div>
                 <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold text-text-dark">
                   {game.title}
                 </h2>
-                <p className="mt-2 text-sm text-text-muted">{game.desc}</p>
-                <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent group-hover:gap-2 transition-all">
-                  {t("startGame")} →
+                <p className="mt-2 text-sm leading-relaxed text-text-muted">{game.desc}</p>
+                <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-all group-hover:gap-2.5">
+                  {t("startGame")}
+                  <ArrowRight size={15} />
                 </div>
               </Link>
             </motion.div>

@@ -74,7 +74,7 @@ export default function QuizPage() {
             </button>
             <Link
               href={`/${locale}/zabava`}
-              className="flex items-center justify-center gap-2 rounded-full border-2 border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-white"
+              className="flex items-center justify-center gap-2 rounded-full border border-primary/30 px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:border-primary"
             >
               <ArrowLeft size={18} />
               {isEn ? "Back to games" : "Назад на игре"}
@@ -87,11 +87,11 @@ export default function QuizPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-light">
+      <div className="page-header px-4 pb-8 pt-8 text-center">
+        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-light text-shadow-subtle">
           {t("quiz")}
         </h1>
-        <div className="mt-3 flex items-center justify-center gap-4 text-sm text-text-light/60">
+        <div className="mt-3 flex items-center justify-center gap-4 text-sm text-text-light/50">
           <span>
             {current + 1}/{questions.length}
           </span>
@@ -100,7 +100,7 @@ export default function QuizPage() {
           </span>
         </div>
         {/* Progress bar */}
-        <div className="mx-auto mt-3 h-1.5 max-w-xs overflow-hidden rounded-full bg-wood-dark/50">
+        <div className="mx-auto mt-3 h-1 max-w-xs overflow-hidden rounded-full bg-wood-dark/40">
           <div
             className="h-full rounded-full bg-accent transition-all duration-500"
             style={{ width: `${((current + 1) / questions.length) * 100}%` }}
@@ -122,7 +122,7 @@ export default function QuizPage() {
 
             <div className="mt-6 flex flex-col gap-3">
               {(isEn ? q.optionsEn : q.options).map((option, idx) => {
-                let style = "bg-white border-wood-light/30 hover:border-accent";
+                let style = "bg-white border-wood-light/20 hover:border-accent";
                 if (selected !== null) {
                   if (idx === q.correct) {
                     style = "bg-green-50 border-green-400";

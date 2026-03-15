@@ -11,25 +11,25 @@ export default function Footer() {
   const isEn = locale === "en";
 
   return (
-    <footer className="bg-charcoal text-text-light">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 md:grid-cols-3">
+    <footer className="border-t border-wood-dark/20 bg-charcoal text-text-light">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-3 md:gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent/20 font-[family-name:var(--font-heading)] text-2xl font-black text-accent">
+            <div className="flex items-center gap-2.5 mb-5">
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent/15 font-[family-name:var(--font-heading)] text-2xl font-black text-accent ring-1 ring-accent/20">
                 Ш
               </span>
               <div>
                 <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-accent">
                   Месара Шишко
                 </h3>
-                <p className="text-xs tracking-widest text-wood-light uppercase">
+                <p className="text-[10px] tracking-[0.2em] text-wood-light/80 uppercase">
                   Чајетина
                 </p>
               </div>
             </div>
-            <p className="text-sm text-text-light/60 leading-relaxed">
+            <p className="text-sm leading-relaxed text-text-light/50">
               {isEn
                 ? "The finest grill on Zlatibor. Fresh meat, traditional taste, family atmosphere."
                 : "Најбољи роштиљ на Златибору. Свеже месо, традиционални укус, породична атмосфера."}
@@ -38,37 +38,37 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="mb-4 font-[family-name:var(--font-heading)] text-lg font-semibold text-wood-light">
+            <h4 className="mb-5 font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-[0.15em] text-wood-light/90">
               {isEn ? "Quick Links" : "Брзи линкови"}
             </h4>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-2.5">
               <Link
                 href={`/${locale}/meni`}
-                className="text-sm text-text-light/60 hover:text-accent transition-colors"
+                className="text-sm text-text-light/50 transition-colors hover:text-accent"
               >
                 {t("nav.menu")}
               </Link>
               <Link
                 href={`/${locale}/o-nama`}
-                className="text-sm text-text-light/60 hover:text-accent transition-colors"
+                className="text-sm text-text-light/50 transition-colors hover:text-accent"
               >
                 {t("nav.about")}
               </Link>
               <Link
                 href={`/${locale}/galerija`}
-                className="text-sm text-text-light/60 hover:text-accent transition-colors"
+                className="text-sm text-text-light/50 transition-colors hover:text-accent"
               >
                 {t("nav.gallery")}
               </Link>
               <Link
                 href={`/${locale}/kontakt`}
-                className="text-sm text-text-light/60 hover:text-accent transition-colors"
+                className="text-sm text-text-light/50 transition-colors hover:text-accent"
               >
                 {t("nav.contact")}
               </Link>
               <Link
                 href={`/${locale}/zabava`}
-                className="text-sm text-text-light/60 hover:text-accent transition-colors"
+                className="text-sm text-text-light/50 transition-colors hover:text-accent"
               >
                 {t("nav.fun")}
               </Link>
@@ -77,24 +77,24 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="mb-4 font-[family-name:var(--font-heading)] text-lg font-semibold text-wood-light">
+            <h4 className="mb-5 font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-[0.15em] text-wood-light/90">
               {t("contact.title")}
             </h4>
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <MapPin size={16} className="shrink-0 text-accent" />
+            <div className="flex flex-col gap-3.5">
+              <div className="flex items-center gap-3 text-sm text-text-light/50">
+                <MapPin size={15} className="shrink-0 text-accent/70" />
                 <span>{isEn ? RESTAURANT.address.en : RESTAURANT.address.sr}</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Phone size={16} className="shrink-0 text-accent" />
+              <div className="flex items-center gap-3 text-sm text-text-light/50">
+                <Phone size={15} className="shrink-0 text-accent/70" />
                 <span>{RESTAURANT.phone}</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Mail size={16} className="shrink-0 text-accent" />
+              <div className="flex items-center gap-3 text-sm text-text-light/50">
+                <Mail size={15} className="shrink-0 text-accent/70" />
                 <span>{RESTAURANT.email}</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-text-light/60">
-                <Clock size={16} className="shrink-0 text-accent" />
+              <div className="flex items-center gap-3 text-sm text-text-light/50">
+                <Clock size={15} className="shrink-0 text-accent/70" />
                 <span>
                   {isEn
                     ? RESTAURANT.workingHours.en
@@ -106,8 +106,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 border-t border-wood-dark/30 pt-6 text-center">
-          <p className="text-xs text-text-light/40">
+        <div className="mt-12 border-t border-wood-dark/20 pt-6 text-center">
+          <p className="text-xs tracking-wide text-text-light/30">
             &copy; {new Date().getFullYear()} {isEn ? RESTAURANT.fullName.en : RESTAURANT.fullName.sr}.{" "}
             {t("footer.rights")}.
           </p>

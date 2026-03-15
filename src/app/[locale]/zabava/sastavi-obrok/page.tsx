@@ -83,11 +83,11 @@ export default function BuildMealPage() {
 
   return (
     <div className="min-h-screen bg-cream pb-32">
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-light">
+      <div className="page-header px-4 pb-8 pt-8 text-center">
+        <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-light text-shadow-subtle">
           {t("buildMeal")} 🍽️
         </h1>
-        <p className="mt-1 text-sm text-text-light/60">{t("buildMealDesc")}</p>
+        <p className="mt-1 text-sm text-text-light/50">{t("buildMealDesc")}</p>
       </div>
 
       <div className="mx-auto max-w-2xl px-4 py-6">
@@ -99,8 +99,8 @@ export default function BuildMealPage() {
               onClick={() => setActiveCategory(cat.id)}
               className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                 activeCategory === cat.id
-                  ? "bg-accent text-white shadow-md"
-                  : "bg-white text-text-dark hover:bg-cream-dark"
+                  ? "bg-accent text-white shadow-sm"
+                  : "border border-wood-light/20 bg-white text-text-dark hover:border-wood-light/40"
               }`}
             >
               <span>{cat.emoji}</span>

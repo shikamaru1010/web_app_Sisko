@@ -57,14 +57,14 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-10 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="page-header px-4 pb-12 pt-10 text-center">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-shadow-subtle sm:text-4xl">
           {t("title")}
         </h1>
-        <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
+        <p className="mt-2 text-sm text-text-light/50">{t("subtitle")}</p>
       </div>
 
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         {/* Filter */}
         <div className="mb-8 flex justify-center gap-2">
           {(["all", "food", "interior"] as const).map((cat) => (
@@ -73,8 +73,8 @@ export default function GalleryPage() {
               onClick={() => setFilter(cat)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
                 filter === cat
-                  ? "bg-accent text-white shadow-md"
-                  : "bg-white text-text-dark hover:bg-cream-dark"
+                  ? "bg-accent text-white shadow-sm"
+                  : "border border-wood-light/20 bg-white text-text-dark hover:border-wood-light/40 hover:bg-cream-dark"
               }`}
             >
               {t(cat)}
@@ -87,7 +87,7 @@ export default function GalleryPage() {
           {filtered.map((img, i) => (
             <div
               key={img.src}
-              className="group relative cursor-pointer overflow-hidden rounded-xl shadow-sm"
+              className="group relative cursor-pointer overflow-hidden rounded-xl border border-wood-light/10 shadow-sm transition-all hover:shadow-md"
               onClick={() => setLightbox(i)}
             >
               <div className="relative aspect-square">
@@ -95,10 +95,10 @@ export default function GalleryPage() {
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-charcoal/0 transition-colors group-hover:bg-charcoal/20" />
+                <div className="absolute inset-0 bg-charcoal/0 transition-all duration-300 group-hover:bg-charcoal/20" />
               </div>
             </div>
           ))}
@@ -108,31 +108,31 @@ export default function GalleryPage() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 animate-[fadeIn_0.2s_ease-out]"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-[fadeIn_0.2s_ease-out]"
           onClick={closeLightbox}
         >
           <button
             onClick={closeLightbox}
-            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20"
           >
-            <X size={24} />
+            <X size={22} />
           </button>
 
           {lightbox > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(-1); }}
-              className="absolute left-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute left-4 z-10 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={22} />
             </button>
           )}
 
           {lightbox < filtered.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigate(1); }}
-              className="absolute right-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute right-4 z-10 rounded-full bg-white/10 p-2.5 text-white transition-colors hover:bg-white/20"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={22} />
             </button>
           )}
 

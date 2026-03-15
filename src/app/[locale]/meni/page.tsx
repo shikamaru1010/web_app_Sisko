@@ -39,16 +39,16 @@ export default function MenuPage() {
   return (
     <div className="min-h-screen bg-cream pb-24">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="page-header px-4 pb-10 pt-10 text-center">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-shadow-subtle sm:text-4xl">
           {t("title")}
         </h1>
-        <p className="mt-2 text-sm text-text-light/60">{t("subtitle")}</p>
+        <p className="mt-2 text-sm text-text-light/50">{t("subtitle")}</p>
       </div>
 
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         {/* Search */}
-        <div className="-mt-5 mb-4">
+        <div className="-mt-6 mb-5">
           <MenuSearch value={search} onChange={setSearch} />
         </div>
 
@@ -57,7 +57,7 @@ export default function MenuPage() {
           <div className="mb-6 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
             <button
               onClick={() => scrollToCategory("combos")}
-              className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent/10 border border-accent/30 px-4 py-2 text-xs font-medium text-accent shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
+              className="flex shrink-0 items-center gap-1.5 rounded-full border border-accent/25 bg-accent/8 px-4 py-2 text-xs font-medium text-accent transition-all hover:bg-accent hover:text-white hover:border-accent active:scale-95"
             >
               <Tag size={12} />
               <span>{isEn ? "Combos" : "Комбо"}</span>
@@ -66,7 +66,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 onClick={() => scrollToCategory(cat.id)}
-                className="flex shrink-0 items-center gap-1.5 rounded-full bg-white px-4 py-2 text-xs font-medium text-text-dark shadow-sm transition-all hover:bg-accent hover:text-white active:scale-95"
+                className="flex shrink-0 items-center gap-1.5 rounded-full border border-wood-light/20 bg-white px-4 py-2 text-xs font-medium text-text-dark transition-all hover:bg-accent hover:text-white hover:border-accent active:scale-95"
               >
                 <span>{cat.icon}</span>
                 <span>{isEn ? cat.nameEn : cat.name}</span>
@@ -79,25 +79,27 @@ export default function MenuPage() {
         {filteredItems ? (
           <div>
             {filteredItems.length > 0 ? (
-              <div className="flex flex-col gap-2 sm:gap-3">
+              <div className="flex flex-col gap-2.5 sm:gap-3">
                 {filteredItems.map((item) => (
                   <MenuItem key={item.id} item={item} />
                 ))}
               </div>
             ) : (
-              <div className="py-16 text-center">
-                <span className="text-5xl">🔍</span>
+              <div className="py-20 text-center">
+                <span className="text-5xl opacity-60">🔍</span>
                 <p className="mt-4 text-text-muted">{t("noResults")}</p>
               </div>
             )}
           </div>
         ) : (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             {/* Combo section */}
-            <div id="combos" className="rounded-2xl bg-gradient-to-br from-accent/5 to-secondary/5 border border-accent/20 shadow-sm">
-              <div className="px-4 py-4 sm:px-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Tag size={22} className="text-accent" />
+            <div id="combos" className="rounded-2xl border border-accent/15 bg-gradient-to-br from-accent/5 to-secondary/5">
+              <div className="px-5 py-5 sm:px-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+                    <Tag size={20} className="text-accent" />
+                  </div>
                   <div>
                     <h2 className="font-[family-name:var(--font-heading)] text-lg font-bold text-text-dark sm:text-xl">
                       {isEn ? "Combo Deals" : "Комбо понуде"}
@@ -111,7 +113,7 @@ export default function MenuPage() {
                   {combos.map((combo) => (
                     <div
                       key={combo.id}
-                      className="rounded-xl bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                      className="card-premium rounded-xl p-4"
                     >
                       <div className="text-2xl mb-2">{combo.emoji}</div>
                       <h3 className="font-[family-name:var(--font-heading)] text-sm font-bold text-text-dark">

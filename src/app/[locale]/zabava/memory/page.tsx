@@ -132,7 +132,7 @@ export default function MemoryPage() {
   if (!difficulty) {
     return (
       <div className="min-h-screen bg-cream">
-        <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
+        <div className="page-header px-4 pb-8 pt-8 text-center">
           <h1 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-text-light">
             {t("memory")}
           </h1>
@@ -146,7 +146,7 @@ export default function MemoryPage() {
               <button
                 key={diff}
                 onClick={() => startGame(diff)}
-                className="rounded-xl bg-white px-6 py-4 text-center shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                className="card-premium rounded-xl px-6 py-4 text-center hover:-translate-y-0.5"
               >
                 <span className="text-lg font-semibold text-text-dark">
                   {t(diff)}
@@ -204,7 +204,7 @@ export default function MemoryPage() {
             </button>
             <button
               onClick={() => setDifficulty(null)}
-              className="flex items-center justify-center gap-2 rounded-full border-2 border-primary px-6 py-3 font-semibold text-primary hover:bg-primary hover:text-white"
+              className="flex items-center justify-center gap-2 rounded-full border border-primary/30 px-6 py-3 font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:border-primary"
             >
               {t("difficulty")}
             </button>
@@ -219,11 +219,11 @@ export default function MemoryPage() {
 
   return (
     <div className="min-h-screen bg-cream">
-      <div className="bg-charcoal px-4 pb-6 pt-6 text-center">
+      <div className="page-header px-4 pb-6 pt-6 text-center">
         <h1 className="font-[family-name:var(--font-heading)] text-xl font-bold text-text-light">
           {t("memory")}
         </h1>
-        <div className="mt-2 flex items-center justify-center gap-6 text-sm text-text-light/60">
+        <div className="mt-2 flex items-center justify-center gap-6 text-sm text-text-light/50">
           <span className="flex items-center gap-1">
             <MousePointer size={14} /> {moves} {t("moves")}
           </span>

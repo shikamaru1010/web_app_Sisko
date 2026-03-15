@@ -20,11 +20,11 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
   const name = isEn ? category.nameEn : category.name;
 
   return (
-    <div className="overflow-hidden rounded-2xl bg-cream-dark/50 shadow-sm" id={category.id}>
+    <div className="overflow-hidden rounded-2xl border border-wood-light/15 bg-cream-dark/40" id={category.id}>
       {/* Category header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between px-4 py-4 text-left transition-colors hover:bg-cream-dark sm:px-6"
+        className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-cream-dark/60 sm:px-6"
       >
         <div className="flex items-center gap-3">
           <span className="text-2xl">{category.icon}</span>
@@ -38,8 +38,8 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
           </div>
         </div>
         <ChevronDown
-          size={24}
-          className={`text-text-muted transition-transform duration-300 ${
+          size={22}
+          className={`text-text-muted/60 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -53,7 +53,7 @@ export default function MenuCategory({ category, defaultOpen = false }: Props) {
             : "max-h-0 overflow-hidden opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-2 px-3 pb-4 sm:gap-3 sm:px-5">
+        <div className="flex flex-col gap-2.5 px-3 pb-4 sm:gap-3 sm:px-5">
           {category.items.map((item) => (
             <MenuItem
               key={item.id}

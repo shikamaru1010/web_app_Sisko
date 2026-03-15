@@ -24,13 +24,13 @@ export default function CartButton() {
       >
         <Link
           href={`/${locale}/korpa`}
-          className="flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-white shadow-xl transition-all hover:bg-accent-hover hover:shadow-2xl active:scale-95"
+          className="btn-primary flex items-center gap-3 rounded-full bg-accent px-7 py-3.5 text-white shadow-xl ring-1 ring-accent/30 transition-all hover:bg-accent-hover hover:shadow-2xl active:scale-95"
         >
-          <ShoppingCart size={20} />
-          <span className="font-semibold">
+          <ShoppingCart size={18} />
+          <span className="font-semibold tracking-wide">
             {t("order")} ({totalItems})
           </span>
-          <span className="rounded-full bg-white/20 px-3 py-0.5 text-sm font-bold">
+          <span className="rounded-full bg-white/15 px-3 py-0.5 text-sm font-bold tabular-nums">
             {totalPrice.toLocaleString("sr-RS")} {locale === "en" ? "RSD" : "дин"}
           </span>
         </Link>

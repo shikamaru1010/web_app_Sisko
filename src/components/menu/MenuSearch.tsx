@@ -14,15 +14,15 @@ export default function MenuSearch({ value, onChange }: Props) {
   return (
     <div className="relative">
       <Search
-        size={20}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"
+        size={18}
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted/60"
       />
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={t("search")}
-        className="w-full rounded-xl border border-wood-light/30 bg-white py-3 pl-12 pr-10 text-sm text-text-dark placeholder:text-text-muted/60 shadow-sm transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+        className="w-full rounded-xl border border-wood-light/20 bg-white py-3.5 pl-12 pr-10 text-sm text-text-dark placeholder:text-text-muted/50 shadow-md transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15 focus:shadow-lg"
       />
       {value && (
         <button

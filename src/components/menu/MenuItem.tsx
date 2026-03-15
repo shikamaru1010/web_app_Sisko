@@ -71,7 +71,7 @@ export default function MenuItem({ item, showToppings = false }: Props) {
   const unit = item.unit ? (isEn ? item.unitEn : item.unit) : null;
 
   return (
-    <div className="group rounded-xl bg-white shadow-sm transition-all hover:shadow-md">
+    <div className="group card-premium rounded-xl">
       <div className="flex gap-3 p-3 sm:gap-4 sm:p-4">
         {/* Image */}
         {item.image ? (
@@ -80,13 +80,13 @@ export default function MenuItem({ item, showToppings = false }: Props) {
               src={item.image}
               alt={name}
               fill
-              className="object-cover transition-transform group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 640px) 80px, 96px"
             />
           </div>
         ) : (
           <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-cream-dark sm:h-24 sm:w-24">
-            <span className="text-3xl opacity-40">🍖</span>
+            <span className="text-3xl opacity-30">🍖</span>
           </div>
         )}
 
@@ -97,14 +97,14 @@ export default function MenuItem({ item, showToppings = false }: Props) {
               {name}
             </h3>
             {description && (
-              <p className="mt-0.5 text-xs text-text-muted line-clamp-2">
+              <p className="mt-0.5 text-xs leading-relaxed text-text-muted line-clamp-2">
                 {description}
               </p>
             )}
           </div>
 
           <div className="mt-2 flex items-end justify-between gap-2">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               {/* Size options */}
               {item.options && item.options.length > 1 && (
                 <div className="flex gap-1">
@@ -112,10 +112,10 @@ export default function MenuItem({ item, showToppings = false }: Props) {
                     <button
                       key={idx}
                       onClick={() => setSelectedOption(idx)}
-                      className={`rounded-md px-2 py-0.5 text-xs font-medium transition-colors ${
+                      className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all ${
                         selectedOption === idx
-                          ? "bg-primary text-white"
-                          : "bg-cream-dark text-text-muted hover:bg-wood-light/50"
+                          ? "bg-primary text-white shadow-sm"
+                          : "bg-cream-dark text-text-muted hover:bg-wood-light/40"
                       }`}
                     >
                       {isEn ? opt.sizeEn : opt.size}
@@ -140,10 +140,10 @@ export default function MenuItem({ item, showToppings = false }: Props) {
               {showToppings && (
                 <button
                   onClick={() => setToppingsOpen(!toppingsOpen)}
-                  className={`flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium transition-colors ${
+                  className={`flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium transition-all ${
                     toppingsOpen || selectedToppings.length > 0
                       ? "bg-primary/10 text-primary"
-                      : "bg-cream-dark text-text-muted hover:bg-wood-light/50"
+                      : "bg-cream-dark text-text-muted hover:bg-wood-light/40"
                   }`}
                 >
                   {isEn ? "Toppings" : "Зачини"}
@@ -159,7 +159,7 @@ export default function MenuItem({ item, showToppings = false }: Props) {
               {/* Add to cart */}
               <button
                 onClick={handleAdd}
-                className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-accent-hover hover:shadow-md active:scale-95 sm:text-sm"
+                className="btn-primary flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs text-white shadow-sm transition-all hover:bg-accent-hover hover:shadow-md active:scale-95 sm:text-sm"
               >
                 <Plus size={16} />
                 <span className="hidden sm:inline">{t("addToCart")}</span>
@@ -171,7 +171,7 @@ export default function MenuItem({ item, showToppings = false }: Props) {
 
       {/* Toppings selector */}
       {showToppings && toppingsOpen && (
-        <div className="border-t border-cream-dark px-3 pb-3 pt-2 sm:px-4">
+        <div className="border-t border-wood-light/15 px-3 pb-3 pt-2.5 sm:px-4">
           <p className="mb-2 text-xs font-medium text-text-muted">
             {isEn ? "Choose your toppings:" : "Изабери зачине:"}
           </p>
@@ -185,7 +185,7 @@ export default function MenuItem({ item, showToppings = false }: Props) {
                   className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
                     isSelected
                       ? "bg-accent text-white shadow-sm"
-                      : "bg-cream-dark text-text-dark hover:bg-wood-light/50"
+                      : "bg-cream-dark text-text-dark hover:bg-wood-light/40"
                   }`}
                 >
                   {isEn ? topping.nameEn : topping.name}

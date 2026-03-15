@@ -32,7 +32,6 @@ export default function CartPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Build order details for email
     const orderDetails = items
       .map((item) => {
         const name = isEn ? item.nameEn : item.name;
@@ -72,14 +71,16 @@ export default function CartPage() {
           animate={{ opacity: 1, scale: 1 }}
           className="text-center"
         >
-          <CheckCircle size={64} className="mx-auto text-green-500" />
-          <h1 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
+            <CheckCircle size={40} className="text-green-500" />
+          </div>
+          <h1 className="mt-5 font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark">
             {t("successTitle")}
           </h1>
           <p className="mt-2 text-text-muted">{t("successDesc")}</p>
           <Link
             href={`/${locale}/meni`}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover"
+            className="btn-primary mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-[15px] text-white transition-all hover:bg-accent-hover"
           >
             <ArrowLeft size={18} />
             {t("goToMenu")}
@@ -93,14 +94,16 @@ export default function CartPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-cream px-4">
         <div className="text-center">
-          <ShoppingCart size={64} className="mx-auto text-text-muted/30" />
-          <h1 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-cream-dark">
+            <ShoppingCart size={36} className="text-text-muted/40" />
+          </div>
+          <h1 className="mt-5 font-[family-name:var(--font-heading)] text-2xl font-bold text-text-dark">
             {t("empty")}
           </h1>
           <p className="mt-2 text-text-muted">{t("emptyDesc")}</p>
           <Link
             href={`/${locale}/meni`}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-semibold text-white transition-all hover:bg-accent-hover"
+            className="btn-primary mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-[15px] text-white transition-all hover:bg-accent-hover"
           >
             <ArrowLeft size={18} />
             {t("goToMenu")}
@@ -113,11 +116,11 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <div className="bg-charcoal px-4 pb-8 pt-8 text-center">
-        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light sm:text-4xl">
+      <div className="page-header px-4 pb-10 pt-10 text-center">
+        <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-text-light text-shadow-subtle sm:text-4xl">
           {t("title")}
         </h1>
-        <p className="mt-1 text-sm text-text-light/60">
+        <p className="mt-1 text-sm text-text-light/50">
           {items.length} {t("items")}
         </p>
       </div>
@@ -129,7 +132,7 @@ export default function CartPage() {
             <motion.div
               key={`${item.id}-${item.size}`}
               layout
-              className="flex items-center gap-3 rounded-xl bg-white p-3 shadow-sm sm:gap-4 sm:p-4"
+              className="flex items-center gap-3 rounded-xl border border-wood-light/15 bg-white p-3.5 transition-all hover:border-wood-light/30 hover:shadow-sm sm:gap-4 sm:p-4"
             >
               {/* Image */}
               {item.image ? (
@@ -144,7 +147,7 @@ export default function CartPage() {
                 </div>
               ) : (
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-cream-dark">
-                  <span className="text-2xl opacity-40">🍖</span>
+                  <span className="text-2xl opacity-30">🍖</span>
                 </div>
               )}
 
@@ -158,7 +161,7 @@ export default function CartPage() {
                     </span>
                   )}
                 </h3>
-                <p className="text-sm font-bold text-accent">
+                <p className="mt-0.5 text-sm font-bold text-accent">
                   {(item.price * item.quantity).toLocaleString("sr-RS")}{" "}
                   {isEn ? "RSD" : "дин"}
                 </p>
@@ -170,24 +173,24 @@ export default function CartPage() {
                   onClick={() =>
                     updateQuantity(item.id, item.quantity - 1, item.size)
                   }
-                  className="rounded-lg bg-cream-dark p-1.5 text-text-muted hover:bg-wood-light/50"
+                  className="rounded-lg border border-wood-light/20 bg-cream p-1.5 text-text-muted transition-colors hover:border-wood-light/40 hover:bg-cream-dark"
                 >
                   <Minus size={14} />
                 </button>
-                <span className="w-6 text-center text-sm font-semibold">
+                <span className="w-6 text-center text-sm font-semibold tabular-nums">
                   {item.quantity}
                 </span>
                 <button
                   onClick={() =>
                     updateQuantity(item.id, item.quantity + 1, item.size)
                   }
-                  className="rounded-lg bg-cream-dark p-1.5 text-text-muted hover:bg-wood-light/50"
+                  className="rounded-lg border border-wood-light/20 bg-cream p-1.5 text-text-muted transition-colors hover:border-wood-light/40 hover:bg-cream-dark"
                 >
                   <Plus size={14} />
                 </button>
                 <button
                   onClick={() => removeItem(item.id, item.size)}
-                  className="ml-1 rounded-lg p-1.5 text-red-400 hover:bg-red-50"
+                  className="ml-1 rounded-lg p-1.5 text-red-400/70 transition-colors hover:bg-red-50 hover:text-red-500"
                 >
                   <Trash2 size={14} />
                 </button>
@@ -197,9 +200,9 @@ export default function CartPage() {
         </div>
 
         {/* Total */}
-        <div className="mt-6 flex items-center justify-between rounded-xl bg-charcoal px-6 py-4 text-text-light">
-          <span className="text-lg font-semibold">{t("total")}</span>
-          <span className="text-2xl font-bold text-accent">
+        <div className="mt-6 flex items-center justify-between rounded-xl border border-wood-dark/20 bg-charcoal px-6 py-4 text-text-light">
+          <span className="text-base font-semibold tracking-wide">{t("total")}</span>
+          <span className="text-2xl font-bold text-accent tabular-nums">
             {getTotalPrice().toLocaleString("sr-RS")} {isEn ? "RSD" : "дин"}
           </span>
         </div>
@@ -217,7 +220,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="w-full rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg border border-wood-light/20 bg-white px-4 py-2.5 text-sm transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15"
             />
           </div>
           <div>
@@ -231,7 +234,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
-              className="w-full rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full rounded-lg border border-wood-light/20 bg-white px-4 py-2.5 text-sm transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15"
             />
           </div>
           <div>
@@ -245,19 +248,19 @@ export default function CartPage() {
                 setFormData({ ...formData, note: e.target.value })
               }
               placeholder={t("notePlaceholder")}
-              className="w-full resize-none rounded-lg border border-wood-light/30 bg-white px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              className="w-full resize-none rounded-lg border border-wood-light/20 bg-white px-4 py-2.5 text-sm transition-all focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15"
             />
           </div>
 
           {/* Payment note */}
-          <div className="flex items-center gap-2 rounded-lg bg-wood-light/20 px-4 py-3 text-sm text-text-muted">
-            <CreditCard size={18} className="shrink-0 text-primary" />
+          <div className="flex items-center gap-3 rounded-lg border border-wood-light/15 bg-cream-dark/50 px-4 py-3 text-sm text-text-muted">
+            <CreditCard size={18} className="shrink-0 text-primary/70" />
             {t("paymentNote")}
           </div>
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-[0.98]"
+            className="btn-primary flex w-full items-center justify-center gap-2.5 rounded-xl bg-accent py-4 text-base text-white shadow-lg transition-all hover:bg-accent-hover hover:shadow-xl active:scale-[0.98]"
           >
             <ShoppingCart size={20} />
             {t("submit")}
